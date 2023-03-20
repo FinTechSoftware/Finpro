@@ -1,0 +1,137 @@
+:host {
+  display: inline-block;
+}
+
+.spinner {
+  --width: var(--fp-size-2xl);
+  --height: var(--fp-size-2xl);
+  --stroke: var(--fp-color-primary);
+  --fill: var(--fp-color-primary);
+
+  width: var(--width);
+  height: var(--height);
+  stroke: var(--stroke);
+  fill: var(--fill);
+}
+
+:host([size='5xs']) .spinner {
+  --width: var(--fp-size-5xs);
+  --height: var(--fp-size-5xs);
+}
+
+:host([size='4xs']) .spinner {
+  --width: var(--fp-size-4xs);
+  --height: var(--fp-size-4xs);
+}
+
+:host([size='3xs']) .spinner {
+  --width: var(--fp-size-3xs);
+  --height: var(--fp-size-3xs);
+}
+
+:host([size='2xs']) .spinner {
+  --width: var(--fp-size-2xs);
+  --height: var(--fp-size-2xs);
+}
+
+:host([size='xs']) .spinner {
+  --width: var(--fp-size-xs);
+  --height: var(--fp-size-xs);
+}
+
+:host([size='s']) .spinner {
+  --width: var(--fp-size-s);
+  --height: var(--fp-size-s);
+}
+
+:host([size='m']) .spinner {
+  --width: var(--fp-size-m);
+  --height: var(--fp-size-m);
+}
+
+:host([size='l']) .spinner {
+  --width: var(--fp-size-l);
+  --height: var(--fp-size-l);
+}
+
+:host([size='xl']) .spinner {
+  --width: var(--fp-size-xl);
+  --height: var(--fp-size-xl);
+}
+
+:host([size='2xl']) .spinner {
+  --width: var(--fp-size-2xl);
+  --height: var(--fp-size-2xl);
+}
+
+:host([size='3xl']) .spinner {
+  --width: var(--fp-size-3xl);
+  --height: var(--fp-size-3xl);
+}
+
+:host([size='4xl']) .spinner {
+  --width: var(--fp-size-4xl);
+  --height: var(--fp-size-4xl);
+}
+
+:host([size='5xl']) .spinner {
+  --width: var(--fp-size-5xl);
+  --height: var(--fp-size-5xl);
+}
+
+:host([size='6xl']) .spinner {
+  --width: var(--fp-size-6xl);
+  --height: var(--fp-size-6xl);
+}
+
+:host([size='xxl']) .spinner {
+  --width: var(--fp-size-xxl);
+  --height: var(--fp-size-xxl);
+}
+
+:host([size='2xxl']) .spinner {
+  --width: var(--fp-size-2xxl);
+  --height: var(--fp-size-2xxl);
+}
+
+:host([size='3xxl']) .spinner {
+  --width: var(--fp-size-3xxl);
+  --height: var(--fp-size-3xxl);
+}
+
+:host([size='4xxl']) .spinner {
+  --width: var(--fp-size-4xxl);
+  --height: var(--fp-size-4xxl);
+}
+
+:host([variant='primary']) .spinner {
+  --stroke: var(--fp-color-primary)
+}
+
+:host([variant='secondary']) .spinner {
+  --stroke: var(--fp-color-secondary)
+}
+
+:host([variant='success']) .spinner {
+  --stroke: var(--fp-color-success)
+}
+
+:host([variant='danger']) .spinner {
+  --stroke: var(--fp-color-danger)
+}
+
+:host([variant='primary']) .spinner {
+  --fill: var(--fp-color-primary)
+}
+
+:host([variant='secondary']) .spinner {
+  --fill: var(--fp-color-secondary)
+}
+
+:host([variant='success']) .spinner {
+  --fill: var(--fp-color-success)
+}
+
+:host([variant='danger']) .spinner {
+  --fill: var(--fp-color-danger)
+}

@@ -1,0 +1,12 @@
+:host {
+    display: block;
+  }
+  .menu-label {
+    display: inline-block;
+    --font: var(--fp-font-title-3-bold);
+
+    font: var(--font);
+    color: var(--fp-color-primary);
+    padding: var(--fp-size-s) var(--fp-size-2xl);
+    user-select: none;
+  }

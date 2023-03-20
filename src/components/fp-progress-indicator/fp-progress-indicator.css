@@ -1,0 +1,37 @@
+.progress-indicator {
+    --max: 100;
+    --value: 0;
+    --value-color: var(--fp-color-success);
+    --height: var(--fp-size-2xs);
+    --radius: var(--fp-size-3xs);
+  
+    position: relative;
+    background-color: var(--fp-color-secondary-background);
+    height: var(--height);
+    border-radius: var(--radius);
+    width: 100%;
+  }
+  
+  .progress-indicator::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: calc(100% / var(--max) * var(--value));
+    background-color: var(--value-color);
+    border-radius: var(--radius);
+  }
+  
+  :host([size='small']) .progress-indicator {
+    --height: var(--fp-size-3xs);
+    --radius: var(--fp-size-4xs);
+  }
+  
+  :host([size='large']) .progress-indicator {
+    --height: var(--fp-size-xs);
+    --radius: 6px;
+  }
+  
+  :host([failed]) .progress-indicator {
+    --value-color: var(--fp-color-danger);
+  }
+  

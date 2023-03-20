@@ -1,0 +1,161 @@
+import { Meta, Typeset, Canvas, Story } from '@storybook/addon-docs';
+import { html } from 'lit';
+
+<Meta
+  title="Design System/Typography"
+  parameters={{
+    viewMode: 'docs',
+  }}
+/>
+
+# Finpro Typography
+
+Typography plays a crucial role in creating a deliberate visual structure, helping users navigate through the hierarchy of information presented. In the Finpro Design System, the default font is Poppins, and you can utilize various typography variables in your code. However, it's essential to note that not all fonts have equivalent typography variants, and the Finpro system offers nine distinct typography options.
+
+```css
+.my-header {
+  font: var(--fp-font-display-light);
+}
+```
+
+## Display Titles
+
+A display font is specifically designed to be used at larger sizes, typically for headlines and titles. These fonts are commonly employed on landing pages and other prominent sections of a website or document.
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-display-tihin`       | Weight: 100 / Thin        <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-thin)' }}>Display Thin</h1> |
+| `--fp-font-display-extralight`  | Weight: 200 / Extralight  <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-extralight)' }}>Display Extralight</h1> |
+| `--fp-font-display-light`       | Weight: 300 / Light       <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-light)' }}>Display Light</h1> |
+| `--fp-font-display-regular`     | Weight: 400 / Regular     <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-regular)' }}>Display Regular</h1> |
+| `--fp-font-display-medium`      | Weight: 500 / Medium      <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-medium)' }}>Display Medium</h1> |
+| `--fp-font-display-semibold`    | Weight: 600 / Semibold    <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-semibold)' }}>Display Semibold</h1> |
+| `--fp-font-display-bold`        | Weight: 700 / Bold        <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-bold)' }}>Display Bold</h1> |
+| `--fp-font-display-extrabold`   | Weight: 800 / Extrabold   <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-extrabold)' }}>Display Extrabold</h1> |
+| `--fp-font-display-black`       | Weight: 900 / Black       <br/> Size: 48px / 3rem  <br/> Height: 56px (font size + `fp-size-2xs`) | <h1 style={{ font: 'var(--fp-font-display-bold)' }}>Display Black</h1> |
+
+## Headings
+
+Heading fonts are utilized to create larger and more prominent text, commonly seen in titles or section headers to provide greater impact and emphasis.
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-heading-1` | Weight: 300 / Light   <br/> Size: 32px / 2rem <br/> Height: 36px (font size + `fp-size-3xs`)    | <h1 style={{ font: 'var(--fp-font-heading-1)' }}>Heading 1</h1> |
+| `--fp-font-heading-2` | Weight: 400 / Regular <br/> Size: 28px / 1.75rem <br/> Height: 32px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-heading-2)' }}>Heading 2</h1> |
+| `--fp-font-heading-3` | Weight: 400 / Regular <br/> Size: 24px / 1.5rem <br/> Height: 28px (font size + `fp-size-3xs`)  | <h1 style={{ font: 'var(--fp-font-heading-3)' }}>Heading 3</h1> |
+
+## Sub Titles
+
+Subtitles are a smaller and less prominent type of text than headlines, typically employed for shorter medium-emphasis content.
+
+#### Sub Title 1
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-title-1-thin`        | Weight: 100 / Thin        <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-thin)' }}>Sub Title 1 Thin</h1> |
+| `--fp-font-title-1-extralight`  | Weight: 200 / Extralight  <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-extralight)' }}>Sub Title 1 Extralight</h1> |
+| `--fp-font-title-1-light`       | Weight: 300 / Light       <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-light)' }}>Sub Title 1 Light</h1> |
+| `--fp-font-title-1-regular`     | Weight: 400 / Regular     <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-regular)' }}>Sub Title 1 Regular</h1> |
+| `--fp-font-title-1-medium`      | Weight: 500 / Medium      <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-medium)' }}>Sub Title 1 Medium</h1> |
+| `--fp-font-title-1-semibold`    | Weight: 600 / Semibold    <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-semibold)' }}>Sub Title 1 Semibold</h1> |
+| `--fp-font-title-1-bold`        | Weight: 700 / Bold        <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-bold)' }}>Sub Title 1 Bold</h1> |
+| `--fp-font-title-1-extrabold`   | Weight: 800 / Extrabold   <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-extrabold)' }}>Sub Title 1 Extrabold</h1> |
+| `--fp-font-title-1-black`       | Weight: 900 / Black       <br/> Size: 20px / 1.25rem <br/> Height: 24px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-1-black)' }}>Sub Title 1 Black</h1> |
+
+#### Sub Title 2
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-title-2-thin`        | Weight: 100 / Regular     <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-thin)' }}>Sub Title 2 Thin</h1> |
+| `--fp-font-title-2-extralight`  | Weight: 200 / Extralight  <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-extralight)' }}>Sub Title 2 Extralight</h1> |
+| `--fp-font-title-2-light`       | Weight: 300 / Light       <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-light)' }}>Sub Title 2 Light</h1> |
+| `--fp-font-title-2-regular`     | Weight: 400 / Regular     <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-regular)' }}>Sub Title 2 Regular</h1> |
+| `--fp-font-title-2-medium`      | Weight: 500 / Medium      <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-medium)' }}>Sub Title 2 Medium</h1> |
+| `--fp-font-title-2-semibold`    | Weight: 600 / Semibold    <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-semibold)' }}>Sub Title 2 Semibold</h1> |
+| `--fp-font-title-2-bold`        | Weight: 700 / Bold        <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-bold)' }}>Sub Title 2 Bold</h1> |
+| `--fp-font-title-2-extrabold`   | Weight: 800 / Extrabold   <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-extrabold)' }}>Sub Title 2 Extrabold</h1> |
+| `--fp-font-title-2-black`       | Weight: 900 / Black       <br/> Size: 16px / 1rem <br/> Height: 20px (font size + `fp-size-3xs`) | <h1 style={{ font: 'var(--fp-font-title-2-black)' }}>Sub Title 2 Black</h1> |
+
+#### Sub Title 3
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-title-3-thin`        | Weight: 100 / Regular     <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-thin)' }}>Sub Title 3 Thin</h1> |
+| `--fp-font-title-3-extralight`  | Weight: 200 / Extralight  <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-extralight)' }}>Sub Title 3 Extralight</h1> |
+| `--fp-font-title-3-light`       | Weight: 300 / Light       <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-light)' }}>Sub Title 3 Light</h1> |
+| `--fp-font-title-3-regular`     | Weight: 400 / Regular     <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-regular)' }}>Sub Title 3 Regular</h1> |
+| `--fp-font-title-3-medium`      | Weight: 500 / Medium      <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-medium)' }}>Sub Title 3 Medium</h1> |
+| `--fp-font-title-3-semibold`    | Weight: 600 / Semibold    <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-semibold)' }}>Sub Title 3 Semibold</h1> |
+| `--fp-font-title-3-bold`        | Weight: 700 / Bold        <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-bold)' }}>Sub Title 3 Bold</h1> |
+| `--fp-font-title-3-extrabold`   | Weight: 800 / Extrabold   <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-extrabold)' }}>Sub Title 3 Extrabold</h1> |
+| `--fp-font-title-3-black`       | Weight: 900 / Black       <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-3-black)' }}>Sub Title 3 Black</h1> |
+
+#### Sub Title 4
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-title-4-tihn`        | Weight: 100 / Thin        <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-regular)' }}>Sub Title 4 Thin</h1> |
+| `--fp-font-title-4-extralight`  | Weight: 200 / Extralight  <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-regular)' }}>Sub Title 4 Extralight</h1> |
+| `--fp-font-title-4-light`       | Weight: 300 / Light       <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-regular)' }}>Sub Title 4 Light</h1> |
+| `--fp-font-title-4-regular`     | Weight: 400 / Regular     <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-regular)' }}>Sub Title 4 Regular</h1> |
+| `--fp-font-title-4-medium`      | Weight: 500 / Medium      <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-medium)' }}>Sub Title 4 Medium</h1> |
+| `--fp-font-title-4-semibold`    | Weight: 500 / Semibold    <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-medium)' }}>Sub Title 4 Semibold</h1> |
+| `--fp-font-title-4-bold`        | Weight: 700 / Bold        <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-bold)' }}>Sub Title 4 Bold</h1> |
+| `--fp-font-title-4-extrabold`   | Weight: 800 / Bold        <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-extrabold)' }}>Sub Title 4 Extrabold</h1> |
+| `--fp-font-title-4-black`       | Weight: 900 / Bold        <br/> Size: 12px / 0.75rem <br/> Height: 14px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-title-4-black)' }}>Sub Title 4 Black</h1> |
+
+
+## Body Texts
+
+Body text is frequently utilized for extended pieces of writing, as it is well-suited for smaller text sizes, making it easier to read in longer paragraphs.
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-body-text-1` | Weight: 400 / Regular <br/> Size: 16px / 1rem <br/> Height: 18px (font size + `fp-size-4xs`)      | <h1 style={{ font: 'var(--fp-font-body-text-1)' }}>Form Body Text 1</h1> |
+| `--fp-font-body-text-2` | Weight: 400 / Regular <br/> Size: 14px / 0.875rem <br/> Height: 16px (font size + `fp-size-4xs`)  | <h1 style={{ font: 'var(--fp-font-body-text-2)' }}>Form Body Text 2</h1> |
+| `--fp-font-body-text-3` | Weight: 400 / Regular <br/> Size: 12px / 0.75rem  <br/> Height: 14px (font size + `fp-size-4xs`)  | <h1 style={{ font: 'var(--fp-font-body-text-3)' }}>Form Body Text 3</h1> |
+
+
+## Captions
+
+Captions are the smallest size of font and are commonly employed for labeling purposes.
+
+| Variable | Styles | Example |
+|:---------|:-------|:-------:|
+| `--fp-font-caption` | Weight: 500 / Medium <br/> Size: 10px / 0.625rem <br/> Height: 12px (font size + `fp-size-4xs`) | <h1 style={{ font: 'var(--fp-font-caption)' }}>Caption</h1> |
+
+## CSS Variables
+
+The following CSS variables are available and utilized in all of the Finpro components to adhere to typography guidelines:
+
+```css
+--fp-font-family: 'PoppinsVariable', sans-serif;
+
+/* Font weights */
+--fp-font-weight-thin         : 100;
+--fp-font-weight-extralight   : 200;
+--fp-font-weight-light        : 300;
+--fp-font-weight-regular      : 400;
+--fp-font-weight-medium       : 500;
+--fp-font-weight-semibold     : 600;
+--fp-font-weight-bold         : 700;
+--fp-font-weight-extrabold    : 800;
+--fp-font-weight-black        : 900;
+
+/* Font sizes */
+--fp-font-size-6xs  : 0.063rem;   /* 1px */
+--fp-font-size-5xs  : 0.125rem;   /* 2px */
+--fp-font-size-4xs  : 0.25rem;    /* 4px */
+--fp-font-size-3xs  : 0.375rem;   /* 6px */
+--fp-font-size-2xs  : 0.5rem;     /* 8px */
+--fp-font-size-xs   : 0.625rem;   /* 10px */
+--fp-font-size-s    : 0.75rem;    /* 12px */
+--fp-font-size-m    : 0.875rem;   /* 14px */
+--fp-font-size-l    : 1rem;       /* 16px */
+--fp-font-size-xl   : 1.25rem;    /* 20px */
+--fp-font-size-2xl  : 1.5rem;     /* 24px */
+--fp-font-size-3xl  : 1.75rem;    /* 28px */
+--fp-font-size-4xl  : 2rem;       /* 32px */
+--fp-font-size-5xl  : 3rem;       /* 48px */
+--fp-font-size-6xl  : 4rem;       /* 64px */
+```

@@ -1,0 +1,153 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+import { userEvent } from '@storybook/testing-library';
+
+<Meta
+  title="Components/Tooltip"
+  component="fp-tooltip"
+  parameters={{
+    layout: 'centered',
+    chromatic: { viewports: [1000] },
+  }}
+  argTypes={{
+    placement: {
+      control: 'text'
+    }
+  }}
+/>
+
+export const tooltipOpener = async ({ canvasElement }) => {
+  const button = canvasElement.querySelector('fp-button')
+  await userEvent.click(button);
+}
+
+export const IconTriggerTemplate = (args) => html`
+<fp-tooltip placement="${ifDefined(args.placement)}">
+  <fp-button slot="tooltip-trigger" icon="settings" variant="tertiary" kind="neutral" label="Settings" variant="secondary"></fp-button>
+  Settings
+</fp-tooltip>`;
+
+export const ButtonTriggerTemplate = (args) => html`
+<fp-tooltip placement="${ifDefined(args.placement)}">
+  <fp-button slot="tooltip-trigger" icon="plus_fill"></fp-button>
+  You can add text, photos and graphics. If you put a very long text, it will be wrapped after max-length of the tooltip.
+</fp-tooltip>`;
+
+export const PlacementTemplate = (args) => html`
+<fp-tooltip placement="${ifDefined(args.placement)}">
+  <fp-button slot="tooltip-trigger">${args.placement}</fp-button>
+  You can use this section to cancel your order.
+</fp-tooltip>`;
+
+# Tooltip
+
+When a user hovers over an element, tooltips appear to provide useful information through displayed text.
+
+<fp-alert variant="warning" icon>Inline styles in examples are only for **demo purposes**. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+## Basic Usage
+
+Tooltips are applicable to a variety of triggers including buttons, icons, text, and more.
+The only requirement for utilizing tooltips is to assign the slot name as `tooltip-trigger`. Hovering over the trigger component will cause the remaining content to be displayed within the tooltip.
+
+<Canvas>
+  <Story name="Usage With Icon Button" play={tooltipOpener}>
+    {IconTriggerTemplate.bind({})}
+  </Story>
+  <Story name="Usage With Button" play={tooltipOpener}>
+    {ButtonTriggerTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Placement
+
+By providing a `placement` value, the direction of the tooltip can be specified, resulting in a corresponding adjustment of the tooltip and arrow position. Default placement is `top`.
+
+You can use the other options:
+
+* `top-start`
+* `top`
+* `top-end`
+* `bottom-start`
+* `bottom`
+* `bottom-end`
+* `left-start`
+* `left`
+* `left-end`
+* `right-start`
+* `right`
+* `right-end`
+
+In the event that the designated placement for the tooltip lacks sufficient space, the tooltip will be automatically repositioned to the nearest available area.
+
+As an example, if there is inadequate space above the trigger, the tooltip will instead be presented below it.
+
+<Canvas>
+  <Story name="Top-Start Placement"
+    args={{ placement: 'top-start' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Top Placement"
+    args={{ placement: 'top' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Top-End Placement"
+    args={{ placement: 'top-end' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Bottom-Start Placement"
+    args={{ placement: 'bottom-start' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Bottom Placement"
+    args={{ placement: 'bottom' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Bottom-End Placement"
+    args={{ placement: 'bottom-end' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Left-Start Placement"
+    args={{ placement: 'left-start' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Left Placement"
+    args={{ placement: 'left' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Left-End Placement"
+    args={{ placement: 'left-end' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Right-Start Placement"
+    args={{ placement: 'right-start' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Right Placement"
+    args={{ placement: 'right' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+  <Story name="Right-End Placement"
+    args={{ placement: 'right-end' }}
+    play={tooltipOpener}>
+    {PlacementTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-tooltip" />

@@ -1,0 +1,165 @@
+:host {
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+:host *,
+:host *::before,
+:host *::after {
+    box-sizing: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.card {
+    --main-color: var(--fp-color-primary);
+    --bg-color: var(--main-color);
+    --border-color: var(--main-color);
+    --content-color: var(--fp-color-content-primary);
+    --border-radius: var(--fp-border-radius-s);
+    --border-width: 1px;
+    --padding: var(--fp-size-m);
+    --font: var(--fp-font-title-3-medium);
+
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--content-color);
+    border: solid var(--border-width) var(--border-color);
+    border-radius: var(--border-radius);
+    font: var(--font);
+}
+
+
+.card-img {
+    display: flex;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin: calc(-1 * var(--border-width));
+    overflow: hidden;
+}
+
+.card-img::slotted(img) {
+    display: block;
+    width: 100%;
+}
+
+.card:not(.card--has-image) .card-img {
+    display: none;
+}
+
+.card-header {
+    font: var(--fp-font-title-2-bold);
+    display: block;
+    border-bottom: solid var(--border-width) var(--border-color);
+    padding: calc(var(--padding) / 2) var(--padding);
+}
+
+.card:not(.card--has-header) .card-header {
+    display: none;
+}
+
+.card:not(.card--has-image) .card-header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.card-body {
+    display: block;
+    padding: var(--padding);
+}
+
+.card--has-footer .card-footer {
+    display: block;
+    border-top: solid var(--border-width) var(--border-color);
+    padding: var(--padding);
+}
+
+.card:not(.card--has-footer) .card-footer {
+    display: none;
+}
+
+/* Variants */
+
+:host([variant='primary']) .card {
+    --content-color: var(--fp-color-content-primary);
+    --border-color: var(--fp-color-primary);
+    --bg-color: var(--fp-color-primary-background);
+}
+
+:host([variant='secondary']) .card {
+    --content-color: var(--fp-color-content-secondary);
+    --border-color: var(--fp-color-secondary-hover);
+    --bg-color: var(--fp-color-secondary-background);
+}
+
+:host([variant='tertiary']) .card {
+    --content-color: var(--fp-color-content-tertiary);
+    --border-color: var(--fp-color-tertiary-hover);
+    --bg-color: var(--fp-color-tertiary-background);
+}
+
+:host([variant='alternative']) .card {
+    --content-color: var(--fp-color-alternative);
+    --border-color: var(--fp-color-alternative-hover);
+    --bg-color: var(--fp-color-alternative-background);
+}
+
+:host([variant='featured']) .card {
+    --content-color: var(--fp-color-featured);
+    --border-color: var(--fp-color-featured-hover);
+    --bg-color: var(--fp-color-featured-background);
+}
+
+:host([variant='success']) .card {
+    --content-color: var(--fp-color-success);
+    --border-color: var(--fp-color-success-hover);
+    --bg-color: var(--fp-color-success-background);
+}
+
+:host([variant='warning']) .card {
+    --content-color: var(--fp-color-warning);
+    --border-color: var(--fp-color-warning-hover);
+    --bg-color: var(--fp-color-warning-background);
+}
+
+:host([variant='danger']) .card {
+    --content-color: var(--fp-color-danger);
+    --border-color: var(--fp-color-danger-hover);
+    --bg-color: var(--fp-color-danger-background);
+}
+
+
+:host([borderRadius="n"]) .card {
+    --border-radius: var(--fp-border-radius-n);
+}
+
+:host([borderRadius="2xs"]) .card {
+    --border-radius: var(--fp-border-radius-2xs);
+}
+
+:host([borderRadius="xs"]) .card {
+    --border-radius: var(--fp-border-radius-xs);
+}
+
+:host([borderRadius="m"]) .card {
+    --border-radius: var(--fp-border-radius-m);
+}
+
+:host([borderRadius="l"]) .card {
+    --border-radius: var(--fp-border-radius-l);
+}
+
+:host([borderRadius="xl"]) .card {
+    --border-radius: var(--fp-border-radius-xl);
+}
+
+:host([borderRadius="2xl"]) .card {
+    --border-radius: var(--fp-border-radius-2xl);
+}
+
+:host([borderRadius="pill"]) .card {
+    --border-radius: var(--fp-border-radius-pill);
+}

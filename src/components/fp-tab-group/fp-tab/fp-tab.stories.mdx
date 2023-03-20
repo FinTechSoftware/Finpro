@@ -1,0 +1,135 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Tab/Tab"
+  component="fp-tab"
+/>
+
+export const TabsTemplate = (args) => html`
+  <fp-tab-group>
+    <fp-tab name="test-1" slot="tabs" disabled>Disabled</fp-tab>
+    <fp-tab name="test-2" slot="tabs" selected >Selected</fp-tab>
+    <fp-tab name="test-3" slot="tabs">Tab</fp-tab>
+  </fp-tab-group>`;
+
+export const TabsAttributeTemplate = (args) => html`
+  <fp-tab-group>
+    <fp-tab name="test-1" slot="tabs" Caption='${ifDefined(args.caption)}' help-text='${ifDefined(args.helpText)}' badge='${ifDefined(args.badge)}' >Tab 1</fp-tab>
+    <fp-tab name="test-2" slot="tabs">Tab 2</fp-tab>
+    <fp-tab name="test-3" slot="tabs" Caption='${ifDefined(args.caption)}' help-text='${ifDefined(args.helpText)}
+    ' badge='${ifDefined(args.badge)}'  disabled >Tab 3</fp-tab>
+  </fp-tab-group>`;
+
+export const NotifyTemplate = (args) => html`
+  <fp-tab-group>
+    <fp-tab name="test-1" slot="tabs" notify >Tab 1</fp-tab>
+    <fp-tab name="test-2" slot="tabs" selected notify >Tab 2</fp-tab>
+    <fp-tab name="test-3" slot="tabs" disabled notify >Tab 3</fp-tab>
+  </fp-tab-group>`;
+
+export const IconTemplate = (args) => html`
+  <fp-tab-group>
+    <fp-tab name="test-1" slot="tabs" icon='${ifDefined(args.icon1)}' >Tab 1</fp-tab>
+    <fp-tab name="test-2" slot="tabs" icon='${ifDefined(args.icon2)}' >Tab 2</fp-tab>
+    <fp-tab name="test-3" slot="tabs" icon='${ifDefined(args.icon3)}' disabled >Tab 3</fp-tab>
+  </fp-tab-group>`;
+
+export const MoreThanOneSelectedTemplate = (args) => html`
+  <fp-tab-group>
+    <fp-tab name="test-1" slot="tabs" selected >Selected Tab 1</fp-tab>
+    <fp-tab name="test-2" slot="tabs" selected >Selected Tab 2</fp-tab>
+    <fp-tab name="test-3" slot="tabs">Tab 3</fp-tab>
+  </fp-tab-group>`;
+
+export const SelectedDisabledTogetherTemplate = (args) => html`
+  <fp-tab-group>
+    <fp-tab name="test-1" slot="tabs" >Tab 1</fp-tab>
+    <fp-tab name="test-2" slot="tabs" selected disabled >Selected and Disabled Tab 2</fp-tab>
+    <fp-tab name="test-3" slot="tabs" >Tab 3</fp-tab>
+  </fp-tab-group>`;
+
+# Tab
+Tabs within tab groups show and trigger tab panels. You can disable a tab with the disabled prop and select a tab with the selected prop.
+
+<fp-alert variant="warning" icon>Inline styles in examples are only for **demo purposes**. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+<Canvas>
+<Story name="Basic Usage">
+    {TabsTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Tab with Caption
+Caption attribute helps to explain title. The caption is shown below the tab title.
+
+<Canvas>
+<Story name="Tab With Caption"  args={{ caption: 'Caption' }}>>
+    {TabsAttributeTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Tab With Help Text
+Help-text attribute allows you to provide more information to user. It puts a `fp-tooltip` component on the right side of the tab.
+
+<Canvas>
+<Story name="Tab With Help Text"  args={{helpText:'helpText' }}>>
+    {TabsAttributeTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Tab With Badge
+A Badge is possible on a tab. Inside, `fp-badge` component shows the Badge.
+
+<Canvas>
+<Story name="Tab With Badge"  args={{badge:'New' }}>>
+    {TabsAttributeTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Tab With Icon
+An icon is possible on a tab. Inside, `fp-icon` component displays the icon and its color aligns with the color of the title of the tab.
+
+<Canvas>
+<Story name="Tab With Icon" args={{icon1:'heart', icon2:'settings', icon3:'book', icon4:'academy', icon5:'account', icon6:'attach', icon7:'award', icon8:'browser' }}>>
+    {IconTemplate.bind({})}
+ </Story>
+</Canvas>
+
+## Tab With Notification Dot
+A notification dot is possible on a tab component for user to notice updates in related content.
+
+<Canvas>
+<Story name="Tab With Notification Dot">>
+    {NotifyTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Edge Cases
+
+#### More Than One Selected Tab
+The last one becomes selected if you use more than one selected tabs.
+
+<Canvas>
+<Story name="More Than One Selected Tab">
+    {MoreThanOneSelectedTemplate.bind({})}
+  </Story>
+</Canvas>
+
+#### Using Disabled and Selected Props Together
+Disabled prop takes precedence over selected prop if they are used together in same table.
+
+<Canvas>
+<Story name="Using Disabled and Selected Props Together">
+    {SelectedDisabledTogetherTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-tab" />
+
+

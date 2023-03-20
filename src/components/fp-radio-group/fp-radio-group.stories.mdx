@@ -1,0 +1,94 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+import { userEvent } from '@storybook/testing-library';
+
+<Meta
+  title="Components/Radio/Radio Group"
+  component="fp-radio-group"
+  argTypes={{
+    label: {
+      control: 'text',
+      type: 'string'
+    },
+    name: {
+      control: 'text',
+      type: 'string'
+    },
+    value: {
+      control: 'text',
+      type: 'string'
+    },
+    required: {
+      control: 'boolean',
+    },
+  }}
+/>
+
+export const RadioGroupTemplate = (args) => html`
+  <fp-radio-group
+    class='${ifDefined(args.class)}'
+    label='${ifDefined(args.label)}'
+    name='${ifDefined(args.name)}'
+    value='${ifDefined(args.value)}'
+    ?required=${args.required}
+  >${args.options.map((option) =>
+      html`\n  <fp-radio value=${option.value}>${option.label}</fp-radio>`
+    )}
+</fp-radio-group>`;
+
+export const StyledTemplate = (args) => html`
+<style>
+  .${args.class} {
+    --fp-radio-direction: row;
+  }
+</style>
+${RadioGroupTemplate(args)}`;
+
+export const KeyboardNavigationTemplate = (args) => html`
+<input id="previnput" placeholder="Previous Input" autofocus>
+${RadioGroupTemplate(args)}`;
+
+export const focusSecondOption = async ({ }) => {
+  await userEvent.keyboard('[Tab]');
+  await userEvent.keyboard('[ArrowRight]');
+}
+
+# Radio Group
+
+The Radio Group component is a form field that allows the user to make a selection from a list of options. It must be used in conjunction with the `fp-radio` component.
+
+<Canvas>
+  <Story name="Basic Usage" args={{ label: 'Payment Type', name: 'paymentType', options: [{ value: 'cc', label: 'Credit Card'}, {value: 'ideal', label: 'iDeal'}] }}>
+    {RadioGroupTemplate.bind({})}
+  </Story>
+</Canvas>
+
+By setting a `value`, the option with the corresponding value will be automatically selected.
+
+<Canvas>
+  <Story name="Value set" args={{ label: 'Payment Type', name: 'paymentType', value: 'ideal', options: [{ value: 'cc', label: 'Credit Card'}, {value: 'ideal', label: 'iDeal'}] }}>
+    {RadioGroupTemplate.bind({})}
+  </Story>
+</Canvas>
+
+The Radio Group component facilitates keyboard navigation and visually highlights the active radio option while navigating with the keyboard. When the user first presses the `Tab` key, the focus is set on the first available option, and then the user can navigate between options using the arrow keys. The `Space` key is used to select an option.
+
+<Canvas>
+  <Story name="Focused option" args={{ label: 'Payment Type', name: 'paymentType', value: 'cc', options: [{ value: 'cc', label: 'Credit Card'}, {value: 'ideal', label: 'iDeal'}] }} play={focusSecondOption}>
+    {KeyboardNavigationTemplate.bind({})}
+  </Story>
+</Canvas>
+
+The default orientation for the radio options is vertical, but it is possible to change this by setting the CSS variable `--fp-radio-direction` to `row`, which will display the options horizontally instead.
+
+<Canvas>
+  <Story name="Horizontal Stack" args={{ label: 'Payment Type', name: 'paymentType', value: 'ideal', class: 'payment-type-field', options: [{ value: 'cc', label: 'Credit Card'}, {value: 'ideal', label: 'iDeal'}] }}>
+    {StyledTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-radio-group" />

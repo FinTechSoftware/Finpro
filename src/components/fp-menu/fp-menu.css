@@ -1,0 +1,14 @@
+:host {
+    display: block;
+    position: relative;
+    background: var(--fp-color-primary-background);
+    border: solid 2px var(--fp-color-primary);
+    border-radius: var(--fp-border-radius-s);
+    padding: var(--fp-size-s) 0;
+    overflow: auto;
+    overscroll-behavior: none;
+}
+
+::slotted(fp-divider) {
+    --spacing: var(--fp-size-s);
+}

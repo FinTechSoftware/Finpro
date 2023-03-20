@@ -1,0 +1,103 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background: var(--fp-color-primary-background);
+    max-width: calc(100vw - var(--fp-size-4xl));
+    max-height: calc(100vh - var(--fp-size-4xl));
+    min-width: 424px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--fp-border-radius-l);
+  }
+  
+  .dialog,
+  .dialog-polyfill .container {
+    padding: 0;
+    border: 0;
+    border-radius: var(--fp-border-radius-l);
+  }
+  
+  .dialog-polyfill .container {
+    position: fixed;
+  
+    /* FIXME: Use z-index variable */
+    z-index: 999; 
+   }
+   
+  .dialog::backdrop {
+    background: #273142;
+    opacity: 0.7;
+  }
+  
+  .dialog-polyfill {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  
+    /* FIXME: Use css variables for alpha colors */
+    background: #273142b3;
+    
+    /* FIXME: Use z-index variable */
+    z-index: 999; 
+   }
+   
+   :host([open]) .dialog-polyfill {
+    display: flex;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--fp-size-2xs);
+    padding: var(--fp-size-xl) var(--fp-size-xl) 0 var(--fp-size-xl);
+  }
+  
+  header fp-button {
+    margin-left: auto;
+  }
+  
+  header h2 {
+    font: var(--fp-font-title-1-medium);
+    color: var(--fp-color-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    padding: var(--fp-size-xl) var(--fp-size-xl) var(--fp-size-m) var(--fp-size-xl);
+    overflow: auto;
+  }
+  
+  footer {
+    padding: var(--fp-size-xl);
+    display: flex;
+    flex-flow: row-reverse wrap;
+    gap: var(--fp-size-m);
+  }
+  
+  footer.shadow {
+    box-shadow: 0 -4px 15px #27314226;
+  }
+  
+  @media only screen and (max-width: 471px) {
+     .container {
+      max-width: calc(100vw - var(--fp-size-2xl));
+      max-height: calc(100vh - var(--fp-size-2xl));
+      min-width: auto;
+      min-height: auto;
+    }
+  
+    footer {
+      flex-flow: column wrap;
+    }
+  }
+  

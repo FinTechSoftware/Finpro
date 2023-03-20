@@ -1,0 +1,11 @@
+:host {
+    display: none;
+    border-radius: 0 0 var(--fp-border-radius-l) var(--fp-border-radius-l);
+  }
+  
+  :host([visible]) {
+    display: block;
+    padding: var(--fp-size-3xl);
+    background-color: var(--fp-color-primary-background);
+  }
+  

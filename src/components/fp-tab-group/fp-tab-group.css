@@ -1,0 +1,16 @@
+.tabs {
+    background-color: var(--fp-color-primary-background);
+    border-bottom: var(--fp-size-5xs) solid var(--fp-color-secondary-background);
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .tabs-list {
+    overflow-x: scroll;
+    border-radius: var(--fp-border-radius-l) var(--fp-border-radius-l) 0 0;
+  }
+  
+  .panels {
+    border-radius: 0 0 var(--fp-border-radius-l) var(--fp-border-radius-l);
+  }
+  

@@ -1,0 +1,262 @@
+:host {
+    width: 200px;
+    display: inline-block;
+  }
+  
+  .select-wrapper {
+    width: 100%;
+    position: relative;
+  
+    --padding-vertical: var(--fp-size-2xs);
+    --padding-horizontal: var(--fp-size-s);
+    --background-color:  var(--fp-color-primary-background);
+    --border-color: var(--fp-color-border);
+    --border-focus-color: var(--fp-color-primary-hover);
+    --icon-color: var(--fp-color-content-tertiary);
+    --text-color: var(--fp-color-content-primary);
+    --label-color: var(--fp-color-content-secondary);
+    --placeholder-color: var(--fp-color-content-tertiary);
+    --height: var(--fp-size-5xl);
+    --menu-padding: 0 var(--fp-size-l);
+    --menu-margin-top: var(--fp-size-2xs);
+    --font-size: var(--fp-font-size-m);
+    --disabled-color: var(--fp-color-tertiary);
+    --z-index: 1;
+    --menu-height: 250px;
+  }
+  
+  :host([size='large']) .select-wrapper {
+    --height: var(--fp-size-6xl);
+    --padding-vertical: var(--fp-size-s);
+    --padding-horizontal: var(--fp-size-l);
+  }
+  
+  :host([size='small']) .select-wrapper {
+    --height: var(--fp-size-3xl);
+    --padding-vertical: var(--fp-size-4xs);
+    --padding-horizontal: var(--fp-size-4xs);
+    --font-size: var(--fp-font-size-s);
+  }
+  
+  .placeholder {
+    color: var(--placeholder-color);
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  :host([disabled]) .placeholder {
+    --placeholder-color: var(--fp-color-content-passive);
+  }
+  
+  .invalid {
+    --border-color: var(--fp-color-danger);
+    --border-focus-color: var(--fp-color-danger-hover);
+    --label-color: var(--fp-color-danger);
+  }
+  
+  .select-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    height: var(--height);
+    border: solid 1px var(--border-color);
+    font: var(--fp-font-title-3-regular);
+    padding: 0 var(--padding-horizontal);
+    border-radius: var(--fp-border-radius-s);
+    color: var(--text-color);
+    user-select: none;
+  }
+  
+  .remove-all {
+    display: none;
+  }
+  
+  .remove-all::after {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    bottom: 4px;
+    height: 1rem;
+    border-left: 1px solid var(--fp-color-border);
+  }
+  
+  .selected .remove-all {
+    display: block;
+  }
+  
+  :host([disabled]) .remove-all,
+  :host([disabled]) .remove-all::after {
+    display: none;
+  }
+  
+  .dropdown-icon {
+    font-size: var(--fp-font-size-m);
+  }
+  
+  .dropdown-icon.open {
+    display: none;
+  }
+  
+  .select-open .dropdown-icon.open {
+    display: inline-block;
+  }
+  
+  .select-open .dropdown-icon.closed {
+    display: none;
+  }
+  
+  .selected .dropdown-icon {
+    --icon-color: var(--fp-color-secondary);
+  }
+  
+  :host([disabled]) .dropdown-icon {
+    --icon-color: var(--fp-color-content-passive);
+  }
+  
+  .select-open .select-input {
+    border: solid 1px var(--border-focus-color);
+  }
+  
+  :host([disabled]) {
+    cursor: not-allowed;
+  }
+  
+  :host([disabled]) .select-input {
+    pointer-events: none;
+    background-color: var(--disabled-color);
+  }
+  
+  .select-input .selected-options {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .selected-options li {
+    display: inline;
+    font-size: var(--font-size);
+    color: var(--text-color);
+  }
+  
+  .selected-options li:not(:last-child)::after {
+    content: ', ';
+  }
+  
+  :host([disabled]) .selected-options li
+  {
+    color: var(--fp-color-content-passive);
+  }
+  
+  .select-input .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--fp-size-2xs);
+    margin-left: var(--fp-size-2xs);
+  }
+  
+  .popover {
+    --left: 0;
+    --top: 0;
+  
+    position: fixed;
+    border: solid 1px var(--border-color);
+    background-color: var(--background-color);
+    font: var(--fp-font-title-3-regular);
+    border-radius: var(--fp-border-radius-s);
+    padding: var(--menu-padding);
+    outline: none;
+    box-sizing: border-box;
+    max-height: var(--menu-height);
+    overflow-y: auto;
+    display: none;
+    flex-direction: column;
+    z-index: var(--z-index);
+    width: 100%;
+    top: var(--top);
+    left: var(--left);
+  }
+  
+  .select-open .popover {
+    display: flex;
+    border: solid 1px var(--border-focus-color);
+  }
+  
+  fp-icon {
+    color: var(--icon-color);
+  }
+  
+  label {
+    position: absolute;
+    display: block;
+    top: var(--padding-vertical);
+    left: var(--padding-horizontal);
+    right: calc(var(--fp-size-2xs) + var(--fp-size-l) + var(--fp-size-2xs));
+    max-width: max-content;
+    transition: all ease-in 0.2s;
+    pointer-events: none;
+    font: var(--fp-font-title-3-regular);
+    font-size: var(--font-size);
+    color: var(--placeholder-color);
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  :where(.select-open, .selected) label {
+    top: 0;
+    left: var(--fp-size-2xs);
+    transform: translateY(-50%);
+    font: var(--fp-font-caption);
+    color: var(--label-color);
+    padding: 0 var(--fp-size-4xs);
+    background-color: var(--fp-color-primary-background);
+    pointer-events: initial;
+    right: var(--padding-horizontal);
+  }
+  
+  :host([label-fixed]) .select-wrapper {
+    padding-top: var(--fp-size-l);
+  }
+  
+  :host([label-fixed]) label {
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    transition: none;
+    transform: none;
+    pointer-events: initial;
+    font: var(--fp-font-caption);
+    color: var(--label-color);
+  }
+  
+  .help-text,
+  .invalid-text {
+    margin: var(--fp-size-4xs) 0 0 var(--fp-size-2xs);
+    font: var(--fp-font-title-4-regular);
+    padding: var(--fp-size-4xs) var(--fp-input-padding-horizontal);
+  }
+  
+  .help-text {
+    color: var(--fp-color-content-secondary);
+  }
+  
+  .invalid-text {
+    color: var(--fp-color-danger);
+  }
+  
+  .select-open .help-text,
+  .select-open .invalid-text {
+    visibility: hidden;
+  }
+  

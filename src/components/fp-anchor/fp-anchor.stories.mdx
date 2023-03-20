@@ -1,0 +1,43 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta 
+    title="Components/Anchor"
+    component="fp-anchor"
+    argTypes={{
+        label:{
+            control: 'text',
+            type: 'text'
+        },
+        href:{
+            control: 'text',
+            type: 'text'
+        },
+        target:{
+            control: 'text',
+            type: 'text'
+        }
+    }}
+/>
+
+export const Template = () => html`
+    <fp-anchor href="https://fintechyazilim.com/" target="_blank"> <div slot='label'> FintechYazilim </div> </fp-anchor>`; 
+
+# Anchor
+
+Anchor is a wrapper around Text component with component prop set to a by default. It supports the same props as Text component.
+
+## Basic Anchor
+
+The anchor component has three properties. These; `tag`, `href`, and `target`.
+
+<Canvas isColumn>
+    <Story name="Basic Usage">{Template.bind({})}</Story>
+</Canvas>      
+
+## Reference
+
+<ArgsTable of="fp-anchor" />

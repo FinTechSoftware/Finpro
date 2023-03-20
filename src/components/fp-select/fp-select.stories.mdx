@@ -1,0 +1,206 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import {
+  Meta,
+  Canvas,
+  ArgsTable,
+  Story,
+} from '@storybook/addon-docs';
+import { userEvent } from '@storybook/testing-library';
+
+<Meta
+  title="Components/Select/Select"
+  component="fp-select"
+  parameters={{
+    layout: 'centered',
+    chromatic: { viewports: [1000] },
+  }}
+  argTypes={{
+    label: {
+      control: 'text'
+    },
+    placeholder: {
+      control: 'text'
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'medium', 'large']
+      }
+    },
+    required: {
+      control: 'boolean'
+    },
+    disabled: {
+      control: 'boolean'
+    },
+    labelFixed: {
+      control: 'boolean'
+    },
+    helpText: {
+      control: 'text'
+    },
+  }}
+/>
+
+export const selectOpener = async ({ canvasElement }) => {
+  const select = canvasElement?.querySelector('fp-select')
+  if(select.shadowRoot) {
+    const selectInput = select.shadowRoot.querySelector('.select-input')
+    await userEvent.click(selectInput);
+  }
+}
+
+export const SelectTemplate = (args) => html`<fp-select
+    label='${ifDefined(args.label)}'
+    ?label-fixed='${args.labelFixed}'
+    ?multiple='${args.multiple}'
+    ?required='${args.required}'
+    ?disabled='${args.disabled}'
+    ?success='${args.success}'
+    size='${ifDefined(args.size)}'
+    help-text='${ifDefined(args.helpText)}'
+    invalid-text='${ifDefined(args.customInvalidText)}'
+    placeholder='${ifDefined(args.placeholder)}'>
+    <fp-select-option value="rx">Redux</fp-select-option>
+    <fp-select-option value="zd">Zustand</fp-select-option>
+    <fp-select-option value="mx">MobX</fp-select-option>
+    <fp-select-option value="rl">Recoil</fp-select-option>
+</fp-select>`;
+
+export const SelectOptionsSelectedTemplate = (args) => html`<fp-select
+    label='${ifDefined(args.label)}'
+    ?label-fixed='${args.labelFixed}'
+    ?multiple='${args.multiple}'
+    ?required='${args.required}'
+    ?disabled='${args.disabled}'
+    ?success='${args.success}'
+    size='${ifDefined(args.size)}'
+    help-text='${ifDefined(args.helpText)}'
+    invalid-text='${ifDefined(args.customInvalidText)}'
+    placeholder='${ifDefined(args.placeholder)}'>
+    <fp-select-option value="rx" selected>Redux</fp-select-option>
+    <fp-select-option value="zd">Zustand</fp-select-option>
+    <fp-select-option value="mx">MobX</fp-select-option>
+    <fp-select-option value="rl">Recoil</fp-select-option>
+</fp-select>`;
+
+# Select
+
+The Select component is designed to allow users to select a value from a list of options, and each option should be enclosed within an `fp-select-option` component.
+
+## Basic Usage
+
+<Canvas>
+  <Story name="Basic Usage" args={{ placeholder: "Choose library" }} play={selectOpener}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Select With Selected Option" args={{ placeholder: "Choose library"  }} play={selectOpener}>
+    {SelectOptionsSelectedTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Multiple Select
+
+When the `multiple` attribute is set to true in a select menu, checkboxes will appear. The selected options will be displayed in the input field separated by commas.
+<Canvas>
+  <Story name="Multiple Select" args={{ placeholder: "Choose libraries", multiple: true }} play={selectOpener}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Multiple Select With Selected Options" args={{ placeholder: "Choose libraries", multiple: true  }} play={selectOpener}>
+    {SelectOptionsSelectedTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Select Labels
+
+The select component may have an optional `label`. If the label is set, it will be a floating label by default. If you prefer to always have it at the top of the input, you can use the `label-fixed` attribute.
+
+<Canvas isColumn>
+  <Story name="Select With Label" args={{ label: "Library" }}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Select With Fixed Label" args={{ label: "Library", placeholder:"Choose library", labelFixed: true }}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Select Without Label" args={{ placeholder: "Choose library" }}>
+    {SelectTemplate.bind({})}
+  </Story>
+</Canvas>
+
+The select component will truncate long labels and placeholders that exceed the width of the select box with an ellipsis character
+
+<Canvas isColumn>
+  <Story name="Select With Long Label" args={{ label: "Very very long label that doesn't fit select component width" }}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Select With Fixed Long Label" args={{ label: "Very very long label that doesn't fit select component width", placeholder:"Choose library", labelFixed: true }}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Select Without Label with Long Placeholder" args={{ placeholder: "Very very long placeholder that doesn't fit select component width" }}>
+    {SelectTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled State
+
+The select component can be `disabled` by utilizing the disabled attribute.
+
+<Canvas>
+  <Story name="Disabled Select" args={{ placeholder: "Choose library", disabled: true }}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Disabled Select with Selected Option" args={{ placeholder: "Choose library", disabled: true }}>
+    {SelectOptionsSelectedTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Select Help Text
+
+You can provide additional information to the user by using the `help-text` attribute.
+
+<Canvas>
+  <Story name="Select Help Text" args={{ helpText: 'You should select your library' }}>
+    {SelectTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Select Validation
+
+For now, the select component only supports the `required` rule for validation. Other validation rules will be added in the near future.
+
+The select validation will be triggered after the user selects a value and exits the input. If there is a validation issue, the select will be highlighted in an error state. Once in this state, every change to the input will have an immediate effect to update the validation state.
+
+<Canvas>
+  <Story name="Validation with Select" args={{ label: 'Choose library', required: true }}>
+    {SelectTemplate.bind({})}
+  </Story>
+</Canvas>
+
+You can specify an error message by utilizing the `invalid-text` attribute.
+
+<Canvas>
+  <Story name="Custom Error Message" args={{ label: 'Choose library', required: true, customInvalidText: 'This field is mandatory' }}>
+    {SelectTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Select Sizes
+
+The select component has 3 size options: `small`, `medium`, and `large`. The default size is  `medium`, but if you would like to display the select in a different size, you can set the `size` attribute to either `large` or `small`.
+
+<Canvas>
+  <Story name="Small Select" args={{ label: 'Choose library', size: 'small' }}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Medium Select" args={{ label: 'Choose library' }}>
+    {SelectTemplate.bind({})}
+  </Story>
+  <Story name="Large Select" args={{ label: 'Choose library', size: 'large' }}>
+    {SelectTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-select" />

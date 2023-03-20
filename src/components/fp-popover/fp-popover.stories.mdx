@@ -1,0 +1,313 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { Meta, Canvas, ArgsTable, Story } from '@storybook/addon-docs';
+import { userEvent } from '@storybook/testing-library';
+
+<Meta
+  title="Components/Popover"
+  component="fp-popover"
+  parameters={{
+    layout: 'centered',
+    chromatic: { viewports: [1000] },
+  }}
+  argTypes={{
+    placement: {
+      control: 'text',
+      default: 'top'
+    },
+    fitSize: {
+      control: 'boolean',
+      default: false,
+    },
+    offset: {
+      control: 'number',
+      default: '10'
+    }
+  }}
+/>
+
+export const popoverOpener = async ({canvasElement}) => {
+  const fpButton = canvasElement.querySelector('fp-button');
+  if(fpButton.shadowRoot){
+    const button = fpButton.shadowRoot.querySelector('button')
+    await userEvent.click(button);
+  }
+}
+
+export const handleClick = async (event,args) => {
+  const popover = document.getElementById(`popover-${ifDefined(args.id)}`);
+  popover.target = document.getElementById(`button-${ifDefined(args.id)}`);
+  if(popover.visible) popover.hide()
+  else popover.show()
+}
+
+export const PopoverTemplate = (args) => html`
+<fp-popover target="button-${ifDefined(args.id)}" id="popover-${ifDefined(args.id)}"
+  placement="${ifDefined(args.placement)}"
+  fit-size="${ifDefined(args.fitSize)}"
+  offset="${ifDefined(args.offset)}"
+  style="${ifDefined(args.style)}">
+  Popover Content
+</fp-popover>`;
+
+export const StoryTemplate = (args) => html`
+<fp-button id="button-${ifDefined(args.id)}" @fp-click="${(event) => handleClick(event,args)}" >${args.buttonText ? args.buttonText : 'Trigger Popover'}</fp-button>
+${PopoverTemplate(args)}`;
+
+export const TargetInstanceStoryTemplate = (args) => html`
+<fp-button id="button-${ifDefined(args.id)}"  @fp-click="${(event) => handleClick(event,args)}" >${args.buttonText ? args.buttonText : 'Trigger Popover'}</fp-button>\n
+<fp-popover .target=${document.getElementById('trigggerButton')} id="popover-${ifDefined(args.id)}"
+  placement="${ifDefined(args.placement)}"
+  fit-size="${ifDefined(args.fitSize)}"
+  offset="${ifDefined(args.offset)}"
+  style="${ifDefined(args.style)}">
+Popover Content
+</fp-popover>`;
+
+# Popover
+
+Popovers are a versatile component commonly used in the Finpro Design System for displaying informative or interactive content related to a specific element on the screen. They are essentially floating containers that can be positioned relative to a target element. Popovers are frequently used in conjunction with other components such as tooltips, dropdowns, and selects.
+
+If possible, it is recommended to use a more semantically relevant option instead of this component. Exercise caution when using this particular component.
+
+<fp-alert variant="danger" icon>Use [**Tooltip component**](/?path=/docs/components-tooltip--usage-with-icon-button) for text based non-interactive informative content.</fp-alert>
+
+<fp-alert variant="warning" icon>Inline styles in examples are only for **demo purposes**. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+## Main behaviours
+
+* Popovers cannot be opened automatically and require the `show()` method to be called via JavaScript.
+* Only one popover can be displayed on the screen at a time. When a new popover is shown, any existing ones will close automatically.
+* Popovers are designed to stay within the viewport. For instance, if there is insufficient space to display the popover below an element, it will automatically flip to display above it.
+* Popovers can be closed by pressing the `Escape` key.
+* Popovers will also close if the user clicks outside of the popover or its target element.
+
+## Basic Usage
+
+To display a popover, you need to call the `show()` method of the popover element, regardless of the trigger type. The positioning of the popover is determined by the `target` attribute/property. You can specify the `target` attribute with the ID of the target element as a string, or you can set it using a reference to an HTMLElement via JavaScript.
+
+```html
+<fp-button id="popoverOpener">Trigger by id</fp-button>
+
+<fp-popover target="popoverOpener">Popover content</fp-popover>
+
+<script>
+  document.querySelector('fp-button').addEventListener('fp-click', () => {
+    document.querySelector('fp-popover').show();
+  })
+</script>
+```
+
+Or by passing targert reference:
+
+```html
+<fp-button>Trigger by instance</fp-button>
+
+<fp-popover>Popover content</fp-popover>
+
+<script>
+  document.querySelector('fp-button').addEventListener('fp-click', (event) => {
+    const popover = document.querySelector('fp-popover');
+    const target = event.target;
+    popover.target = target;
+    popover.show();
+  })
+</script>
+```
+
+<Canvas>
+  <Story name="Show popover with id trigger" args={{ buttonText:'Trigger by id', id:'1' }} play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Show popover with instance trigger" args={{ buttonText:'Trigger with instance' ,id:'2' }} play={popoverOpener}>
+    {TargetInstanceStoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Arrow
+
+Popover arrow visibility can be controlled with the `--fp-popover-arrow-display` option, and the arrow will position itself automatically. By default, the arrow is not visible.
+
+By using the `--fp-popover-arrow-display` option, you can make the popover arrow visible or invisible as desired. The arrow will automatically position itself. Note that the arrow is not visible by default.
+
+* `none` (default, hidden)
+* `block` (makes it visible)
+
+<Canvas>
+  <Story name="Arrow"
+         args={{ id:'3', style: '--fp-popover-arrow-display: block;',
+            buttonText:'Popover with arrow' }}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+
+## Background Color
+
+The background color of the popover can be customized using the `--fp-popover-background-color` option. By default, the color used is `--fp-color-primary-background`.
+
+<Canvas>
+  <Story name="Background Color"
+         args={{  id:'4', style: '--fp-popover-background-color:var(--fp-color-featured-background); --fp-popover-arrow-display: block;',
+         buttonText:'Custom Background'}}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+
+## Border Color
+
+The border color of the popover can be set using the `--fp-popover-border-color` option. The default color used is `--fp-color-primary-hover`.
+
+<Canvas>
+  <Story name="Border Color"
+         args={{  id:'5', style: '--fp-popover-border-color:blue;', buttonText:'Border Color' }}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Padding
+
+The padding for the popover can be adjusted using the `--fp-popover-padding option`. By default, the padding used is `--fp-size-m`.
+
+<Canvas>
+  <Story name="Padding"
+         args={{  id:'6', style: '--fp-popover-padding:2rem;', buttonText:'Large Padding' }}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Padding 0"
+         args={{  id:'7', style: '--fp-popover-padding:0;', buttonText:'No Padding' }}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Border Radius
+
+The border radius of the popover can be set using the `--fp-popover-border-radius option`. The default border radius used is `--fp-size-3xs`.
+
+<Canvas>
+  <Story name="Border Radius"
+         args={{  id:'8', style: '--fp-popover-border-radius:0;', buttonText:'Border Radius 0' }}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Offset
+The distance between the popover and the target element can be specified using the `offset` property. The default distance used is `--fp-size-2xs`.
+<Canvas>
+  <Story name="Default Offset"
+         args={{  id:'9',placement:'right', buttonText:'Default Offset'}}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Custom Offset"
+         args={{  id:'10',placement:'right', offset:'40', buttonText:'Custom Offset'}}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## FitSize
+The width of the popover is determined by its content by default. However, if you set the `fitSize` property to `true`, the popover width will be at least as wide as the target element. This is useful for scenarios such as dropdown buttons where you want the popover to match the width of the button. The default value for `fitSize` is `false`.
+
+<Canvas>
+  <Story name="Fitsize"
+         args={{ id:'11', fitSize:'true', buttonText:'Long content text for fitSize'}}
+         play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Placement
+
+The `placement` property can be used to specify the direction of the popover, which affects the position of the popover and arrow. The default placement is `top`.
+
+Other options for `placement` include:
+
+* `top-start`
+* `top`
+* `top-end`
+* `bottom-start`
+* `bottom`
+* `bottom-end`
+* `left-start`
+* `left`
+* `left-end`
+* `right-start`
+* `right`
+* `right-end`
+
+If there isn't enough space to display the popover in the chosen placement, it will be automatically repositioned to fit in the available space. The popover's position and arrow will adjust accordingly.
+
+<Canvas>
+  <Story name="Top-Start Placement"
+    args={{ id:'13', placement: 'top-start', buttonText:'top-start' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Top Placement"
+    args={{ id:'14', placement: 'top', buttonText:'top' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Top-End Placement"
+    args={{ id:'15', placement: 'top-end', buttonText:'top-end' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Bottom-Start Placement"
+    args={{ id:'16', placement: 'bottom-start', buttonText:'bottom-start' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Bottom Placement"
+    args={{ id:'17', placement: 'bottom', buttonText:'bottom' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Bottom-End Placement"
+    args={{ id:'18', placement: 'bottom-end', buttonText:'bottom-end' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Left-Start Placement"
+    args={{ id:'19', placement: 'left-start', buttonText:'left-start' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Left Placement"
+    args={{ id:'20', placement: 'left', buttonText:'left' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Left-End Placement"
+    args={{ id:'21', placement: 'left-end', buttonText:'left-end' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Right-Start Placement"
+    args={{ id:'22', placement: 'right-start', buttonText:'right-start' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Right Placement"
+    args={{ id:'23', placement: 'right', buttonText:'right' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="Right-End Placement"
+    args={{ id:'24', placement: 'right-end', buttonText:'right-end' ,style: '--fp-popover-arrow-display: block;' }}
+    play={popoverOpener}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-popover" />

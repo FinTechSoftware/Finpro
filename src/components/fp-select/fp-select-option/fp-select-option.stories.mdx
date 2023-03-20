@@ -1,0 +1,59 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import {
+  Meta,
+  Canvas,
+  ArgsTable,
+  Story,
+} from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Select/SelectOption"
+  component="fp-select-option"
+  argTypes={{
+    disabled: {
+      control: 'boolean',
+    },
+    selected: {
+      control: 'boolean',
+    },
+  }}
+/>
+
+# Select Option
+
+The Select Option component is designed to be used within a Select component, and it is used to display a single option within the Select component.
+
+export const Template = (args) => html`
+  <fp-select-option
+    value="fp"
+    ?disabled='${args.disabled}'
+    ?selected='${args.selected}'
+  >finpro</fp-select-option>`;
+
+## Basic Usage
+<Canvas>
+  <Story name="Basic Usage">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Selected
+To pre-select an option, you can use the `selected` attribute.
+<Canvas>
+  <Story name="Selected" args={{ selected: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled
+To make an option unavailable for selection, you can use the `disabled` attribute.
+<Canvas>
+  <Story name="Disabled" args={{ disabled: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-select-option" />

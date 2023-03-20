@@ -1,0 +1,39 @@
+.popover {
+    --arrow-display: var(--fp-popover-arrow-display, none);
+    --background-color: var(--fp-popover-background-color, var(--fp-color-primary-background));
+    --border-color: var(--fp-popover-border-color, var(--fp-color-primary-hover));
+    --padding: var(--fp-popover-padding, var(--fp-size-m));
+    --border-radius: var(--fp-popover-border-radius, var(--fp-size-3xs));
+    --position: var(--fp-popover-position, fixed);
+  
+    position: var(--position);
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    z-index: 999;
+    width: max-content;
+    hyphens: auto;
+    background-color: var(--background-color);
+    font: var(--fp-font-title-3-regular);
+    color: var(--fp-color-content-primary);
+  }
+  
+  .popover:not(.visible) {
+    visibility: hidden;
+  }
+  
+  .arrow {
+    --arrow-rotation: 45deg;
+  
+    box-sizing: border-box;
+    display: var(--arrow-display);
+    position: absolute;
+    background-color: var(--background-color);
+    width: var(--fp-size-2xs);
+    height: var(--fp-size-2xs);
+    transform: rotate(var(--arrow-rotation));
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-right: none;
+  }

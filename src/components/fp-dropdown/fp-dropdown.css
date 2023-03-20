@@ -1,0 +1,46 @@
+:host {
+    position: relative;
+    display: inline-block;
+}
+
+.popover {
+    --left: 0;
+    --top: 0;
+    --border-color: var(--fp-color-primary);
+
+    position: fixed;
+
+    /* FIXME: Use z-index variable */
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--fp-size-m);
+    gap: var(--fp-size-xs);
+    overflow-y: auto;
+    background: var(--fp-color-primary-background);
+    border: 1px solid var(--border-color);
+
+    /* FIXME: Use variables */
+    box-shadow: 0 10px 15px -8px #27314226;
+    border-radius: var(--fp-size-3xs);
+    left: var(--left);
+    top: var(--top);
+    box-sizing: border-box;
+}
+
+:host([kind='neutral']) .popover {
+  --border-color: var(--fp-color-secondary);
+}
+
+:host([kind='success']) .popover {
+  --border-color: var(--fp-color-success);
+}
+
+:host([kind='danger']) .popover {
+  --border-color: var(--fp-color-danger);
+}
+
+.visible {
+    display: flex;
+}

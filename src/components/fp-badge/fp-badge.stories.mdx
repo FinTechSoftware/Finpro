@@ -1,0 +1,116 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Badge"
+  component="fp-badge"
+  argTypes={{
+    icon: {
+        control: 'text'
+    },
+    size: {
+        options: ['large', 'medium', 'small'],
+        control: {type: 'select'}
+    }
+  }}
+/>
+
+export const BadgeTemplate = (args) => html`<fp-badge
+icon="${ifDefined(args.icon)}"
+size=${ifDefined(args.size)}
+style=${ifDefined(args.styles ? styleMap(args.styles) : undefined)}
+>${unsafeHTML(args.content)}</fp-badge>`
+
+export const VariantTemplate = (args) => html`
+${BadgeTemplate({ content:'In Progress', styles: { '--fp-badge-bg-color' : 'rgb(254, 242, 232)', '--fp-badge-color': 'rgb(242, 122, 26)' },...args})}
+${BadgeTemplate({ content:'Approved', styles: { '--fp-badge-bg-color' : 'rgba(231, 249, 239, 1)', '--fp-badge-color': 'rgba(11, 193, 92, 1)' },...args})}
+${BadgeTemplate({ content:'Warning', styles: { '--fp-badge-bg-color' : '#FFF8E6', '--fp-badge-color': '#FFB600' },...args})}
+${BadgeTemplate({ content:'Denied', styles: { '--fp-badge-bg-color' : 'var(--fp-color-danger-background)', '--fp-badge-color': 'var(--fp-color-danger)' },...args})}
+${BadgeTemplate({ content:'Offer', styles: { '--fp-badge-bg-color' : 'var(--fp-color-alternative-background)', '--fp-badge-color': 'var(--fp-color-alternative)' },...args})}
+${BadgeTemplate({ content:'Winner', styles: { '--fp-badge-bg-color' : 'var(--fp-color-featured-background)', '--fp-badge-color': 'var(--fp-color-featured)' },...args})}
+`;
+
+export const WithIconTemplate = (args) => html`
+${BadgeTemplate({ content:'In Progress', icon: 'waiting', styles: { '--fp-badge-bg-color' : 'var(--fp-color-accent-primary-background)', '--fp-badge-color': 'var(--fp-color-primary)' },...args})}
+${BadgeTemplate({ content:'Approved', icon: 'check_fill', styles: { '--fp-badge-bg-color' : 'var(--fp-color-success-background)', '--fp-badge-color': 'var(--fp-color-success)' },...args})}
+${BadgeTemplate({ content:'Warning', icon: 'warning', styles: { '--fp-badge-bg-color' : 'var(--fp-color-warning-background)', '--fp-badge-color': 'var(--fp-color-warning)' },...args})}
+${BadgeTemplate({ content:'Denied', icon: 'close_fill', styles: { '--fp-badge-bg-color' : 'var(--fp-color-danger-background)', '--fp-badge-color': 'var(--fp-color-danger)' },...args})}
+${BadgeTemplate({ content:'Offer', icon: 'my_offers', styles: { '--fp-badge-bg-color' : 'var(--fp-color-alternative-background)', '--fp-badge-color': 'var(--fp-color-alternative)' },...args})}
+${BadgeTemplate({ content:'Winner', icon: 'award', styles: { '--fp-badge-bg-color' : 'var(--fp-color-featured-background)', '--fp-badge-color': 'var(--fp-color-featured)' },...args})}
+`;
+
+export const SizeTemplate = (args) => html`
+${BadgeTemplate({ content:'In Progress', size:'small', ...args })}
+${BadgeTemplate({ content:'In Progress', size:'medium', ...args })}
+${BadgeTemplate({ content:'In Progress', size:'large', ...args })}
+`;
+
+
+# Badge
+
+Badge components are used to effectively indicate a status or tag an item.
+
+<fp-alert variant="warning" icon>The inline styles used in the examples are for **demo purposes** only. You can use regular CSS classes or tag selectors to customize styles.</fp-alert>
+
+## Badge Variants
+Badge components do not have a specific variant. You can use our color palette for badge colors. If you need other colors, you can change the color using the `--bl-badge-bg-color` and `--bl-badge-color` variables. 
+You don't have to give style parameter, you can change color by giving css class like this:
+
+
+`.my-badge {
+    --fp-badge-bg-color: red;
+    --fp-badge-color: black;
+}`
+
+You can use the color model like this ways;
+
+* `rgb`
+* `rgba`
+* `hex`
+* `variables`
+
+Default background color is `--fp-color-accent-primary-background` and default color is `--fp-color-primary`.
+
+<Canvas>
+<Story name="Variants">
+    {VariantTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Icon Badges
+You can increase UX by using icons on your badge. Icons are defined to be located on the left side of the badge slot by default.
+In order to use the icons with the badge, you need to assign the name of the icon to the `icon` property.
+
+And you can only add icon for `large` or `medium` badge.
+
+<Canvas isColumn>
+  <Story name='Badge With Icons'>
+    {WithIconTemplate.bind({})}
+  </Story>
+  <Story name='Small Badge With Icon' args={{ icon: 'info', size: 'small', content: 'Show Info'}}>
+    {BadgeTemplate.bind({})}
+  </Story>
+  <Story name='Large Badge With Icon' args={{ icon: 'info', size: 'large', content: 'Show Info'}}>
+    {BadgeTemplate.bind({})}
+  </Story>
+</Canvas>
+
+
+## Sizing Badges
+
+We have 3 sizes of buttons: `large`, `medium`, `small`. Default size is `medium`.
+
+<Canvas>
+    <Story name='Badge With Sizes'>
+        {SizeTemplate.bind({})}
+    </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-badge" />
+
+

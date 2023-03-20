@@ -1,0 +1,53 @@
+:host {
+    display: inline-block;
+    max-width: 100%;
+  }
+  
+  .badge {
+    --bg-color: var(--fp-badge-bg-color, var(--fp-color-accent-primary-background));
+    --color: var(--fp-badge-color, var(--fp-color-primary));
+    --font: var(--fp-font-title-4-medium);
+    --padding-vertical: var(--fp-size-4xs);
+    --padding-horizontal: var(--fp-size-3xs);
+    --margin-icon: var(--fp-size-3xs);
+    --icon-size: var(--fp-size-s);
+    --height: var(--fp-size-xl);
+  
+    display: flex;
+    gap: var(--margin-icon);
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    border-radius: var(--fp-size-4xs);
+    margin: 0;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    background-color: var(--bg-color);
+    color: var(--color, white);
+    font: var(--font);
+    font-kerning: none;
+    height: var(--height);
+  }
+  
+  :host([size='small']) .badge {
+    --font: var(--fp-font-caption);
+    --height: var(--fp-size-m);
+  }
+  
+  :host([size='large']) .badge {
+    --font: var(--fp-font-title-3-medium);
+    --padding-vertical: var(--fp-size-2xs);
+    --padding-horizontal: var(--fp-size-2xs);
+    --height: var(--fp-size-2xl);
+    --icon-size: var(--fp-size-m);
+  }
+  
+  :host ::slotted(fp-icon) {
+    font-size: var(--icon-size);
+  }
+  
+  :host([size='small']) fp-icon {
+    display: none;
+  }
+  

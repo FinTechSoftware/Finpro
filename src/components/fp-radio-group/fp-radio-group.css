@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+  
+  legend {
+    font: var(--fp-font-title-3-medium);
+    color: var(--fp-color-content-primary);
+  }
+  
+  .options {
+    display: flex;
+    flex-flow: var(--fp-radio-direction, column) wrap;
+    gap: 16px;
+    margin-block: var(--fp-size-xs);
+  }
+  

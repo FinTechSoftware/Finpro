@@ -1,0 +1,93 @@
+import { html } from 'lit';
+import { Meta, Canvas, ArgsTable, Story } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Switch"
+  component="fp-switch"
+  argTypes={{
+    disabled: {
+      control: 'boolean',
+      default: false
+    },
+    checked: {
+      control: 'boolean',
+      default: false
+    },
+  }}
+/>
+
+export const SwitchTemplate = (args) => html`
+<fp-switch
+  ?disabled=${args.disabled}
+  ?checked=${args.checked}>
+</fp-switch>`;
+
+export const SwitchWithLabel = (args) => html`
+<div style="display: flex;align-items: center;gap: var(--fp-size-2xs)">
+  <label style="font: var(--fp-font-title-3);color: var(--fp-color-secondary)">${args.label}</label>
+  <fp-switch
+    ?disabled=${args.disabled}
+    ?checked=${args.checked}
+    aria-label="${args.label}"
+  ></fp-switch>
+</div>`;
+
+# Switch
+
+The switch component can be utilized to switch the On or Off state of a single item.
+
+### Usage
+
+To switch the state rapidly, you can use switch as a button for action.
+
+* The action is triggered right away when you click on switch; users don’t need to click another button to save or apply the settings.
+* Setting `aria-label` attribute is required when you use your own label outside this component.
+* There is no indeterminate state for switch.
+* Don’t make switch an input field; use checkbox for boolean inputs instead.
+
+## Basic
+
+Switch is _Off_ by default.
+
+<Canvas>
+  <Story name="Basic Usage">
+    {SwitchTemplate.bind({})}
+  </Story>
+</Canvas>
+
+Switch with label.
+
+<fp-alert variant="warning" icon>Inline styles in this example are only for **demo purposes**. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+<Canvas>
+  <Story name="Switch with label" args={{ label: "Label for Switch" }}>
+    {SwitchWithLabel.bind({})}
+  </Story>
+</Canvas>
+
+## Checked
+
+Setting on state is possible with checked attribute.
+
+<Canvas>
+  <Story name="Checked" args={{ checked: true }}>
+    {SwitchTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled
+
+Disabled attribute allows you to set a switch as disabled and checked simultaneously.
+
+<Canvas>
+  <Story name="Disabled" args={{ disabled: true }}>
+    {SwitchTemplate.bind({})}
+  </Story>
+  <Story name="Disabled and Checked" args={{ disabled: true, checked: true }}>
+    {SwitchTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-switch" />

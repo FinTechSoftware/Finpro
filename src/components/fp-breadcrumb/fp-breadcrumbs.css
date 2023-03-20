@@ -1,0 +1,93 @@
+ul.breadcrumbs {
+    padding: 10px 16px;
+    list-style: none;
+  }
+  ul.breadcrumbs li {
+    display: inline;
+    font-size: 18px;
+  }
+  ul.breadcrumbs li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  ul.breadcrumbs li a {
+    color: #0275d8;
+    text-decoration: none;
+  }
+  ul.breadcrumbs li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }
+
+  :host([size='5xs']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-5xs);
+  }
+
+  :host([size='4xs']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-4xs);
+  }
+
+  :host([size='3xs']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-3xs);
+  }
+
+  :host([size='2xs']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-2xs);
+  }
+
+  :host([size='xs']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-xs);
+  }
+
+  :host([size='s']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-s);
+  }
+
+  :host([size='m']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-m);
+  }
+
+  :host([size='l']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-l);
+  }
+
+  :host([size='xl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-xl);
+  }
+
+  :host([size='2xl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-2xl);
+  }
+
+  :host([size='3xl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-3xl);
+  }
+
+  :host([size='4xl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-4xl);
+  }
+
+  :host([size='5xl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-5xl);
+  }
+
+  :host([size='6xl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-6xl);
+  }
+
+  :host([size='xxl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-xxl);
+  }
+
+  :host([size='2xxl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-2xxl);
+  }
+
+  :host([size='3xxl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-3xxl);
+  }
+
+  :host([size='4xxl']) ul.breadcrumbs li {
+    font-size:  var(--fp-size-4xxl);
+  }

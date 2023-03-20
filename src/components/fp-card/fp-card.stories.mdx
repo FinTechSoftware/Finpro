@@ -1,0 +1,172 @@
+import {html} from 'lit';
+import {ifDefined} from 'lit/directives/if-defined.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {Meta, Canvas, ArgsTable, Story, Preview, Source} from '@storybook/addon-docs';
+
+<Meta
+    title="Components/Card"
+    component="fp-card"
+/>
+
+export const BasicCard = args => html`
+    <fp-card
+            borderRadius=${ifDefined(args.borderRadius)}
+            style="width: 300px;">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque harum illum impedit itaque optio praesentium
+        qui sint suscipit ut, veritatis?
+    </fp-card>`;
+
+export const CardWithHeader = args => html`
+    <fp-card
+            style="width: 350px;">
+        <div slot="header" style="display: flex; justify-content: space-between; align-items: center;">
+            Header Title
+            <fp-icon name="settings"
+                     style="font-size: var(--fp-font-size-l); color: var(--fp-color-primary);"></fp-icon>
+        </div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut in quibusdam repellendus similique. Aut culpa
+        dolore inventore nemo recusandae?
+    </fp-card>`;
+
+export const CardWithFooter = args => html`
+    <fp-card
+            style="width: 350px;">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorem doloribus error facere harum
+        laudantium libero molestiae odio pariatur sunt.
+        <div slot="footer" style="display: flex; gap: 10px;">
+            <fp-button style="width: 100%;" variant="secondary"
+                       kind="danger">Close
+            </fp-button>
+            <fp-button style="width: 100%;" variant="secondary">More Info</fp-button>
+        </div>
+    </fp-card>`;
+
+export const CardImage = args => html`
+    <fp-card
+            style="width: 350px;">
+        <img
+                slot="img"
+                src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
+                alt="Bitcoin (BTCUSD) price chart from TradingView as of May 23, 2020."
+        />
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolor doloremque eius ipsum laudantium magni
+        non officiis praesentium sed similique.
+    </fp-card>`;
+
+export const CardType = args => html`
+    <fp-card
+            variant=${ifDefined(args.variant)}
+            style="width: 300px;">
+        <img
+                slot="img"
+                src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
+                alt="Bitcoin (BTCUSD) price chart from TradingView as of May 23, 2020."
+        />
+        <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem ea enim error explicabo magni
+            necessitatibus quasi repellendus sit voluptate! Ad alias deserunt doloremque iusto quia quod quos suscipit
+            voluptas voluptates.</small>
+        <div slot="footer" style="display: flex; gap: 10px;">
+            <fp-button style="width: 100%;" variant="secondary"
+                       kind="danger">Close
+            </fp-button>
+            <fp-button style="width: 100%;" variant="secondary">More Info</fp-button>
+        </div>
+    </fp-card>`;
+
+export const CardTypeTemplate = args => html`
+    <div style="display: flex; flex-wrap: wrap; gap:20px;">
+        ${CardType({variant: 'primary'})}
+        ${CardType({variant: "secondary"})}
+        ${CardType({variant: "tertiary"})}
+        ${CardType({variant: "alternative"})}
+        ${CardType({variant: "featured"})}
+        ${CardType({variant: "warning"})}
+        ${CardType({variant: "success"})}
+        ${CardType({variant: "danger"})}
+    </div>
+`
+
+export const CardBorderRadius = args => html`
+    <div style="display: flex; flex-wrap: wrap; gap:20px;">
+        ${BasicCard({borderRadius: 'n'})}
+        ${BasicCard({borderRadius: '2xs'})}
+        ${BasicCard({borderRadius: 'xs'})}
+        ${BasicCard({borderRadius: 's'})}
+        ${BasicCard({borderRadius: 'm'})}
+        ${BasicCard({borderRadius: 'l'})}
+        ${BasicCard({borderRadius: 'xl'})}
+        ${BasicCard({borderRadius: '2xl'})}
+        ${BasicCard({borderRadius: 'pill'})}
+    </div>
+`
+
+# Card
+
+Cards can be used to group related subjects in a container.
+
+## Basic Card
+
+Basic cards aren't very exciting, but they can display any content you want them to.
+
+<Canvas isRow>
+    <Story name="Basic Card">
+        {BasicCard.bind({})}
+    </Story>
+</Canvas>
+
+## Card With Header
+
+Headers can be used to display titles and more.
+
+<Canvas isRow>
+    <Story name="Card With Header">
+        {CardWithHeader.bind({})}
+    </Story>
+</Canvas>
+
+## Card With Footer
+
+Footers can be used to display actions, summaries, or other relevant content.
+
+<Canvas isRow>
+    <Story name="Card With Footer">
+        {CardWithFooter.bind({})}
+    </Story>
+</Canvas>
+
+
+## Images
+
+Cards accept an image slot. The image is displayed atop the card and stretches to fit.
+
+<Canvas isRow>
+    <Story name="Card Images">
+        {CardImage.bind({})}
+    </Story>
+</Canvas>
+
+
+## Cards Variants
+
+We have 8 variant for each card: **Primary**, **Secondary**, **Tertiary**, **Alternative**, **Featured**, **Warning**, **Success** and **Danger**.
+
+<Canvas isRow>
+    <Story name="Variants">
+        {CardTypeTemplate.bind({})}
+    </Story>
+</Canvas>
+
+## Card Border Radius
+
+We have 8 border radius type for each card: **n**, **2xs**, **xs**, **s**, **m**, **l**, **xl**, **2xl** and **pill**.
+
+<Canvas isRow>
+    <Story name="Border Radius">
+        {CardBorderRadius.bind({})}
+    </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-card"/>

@@ -1,0 +1,97 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta 
+    title="Components/Breadcrumbs"
+    component="fp-breadcrumbs"
+/>
+
+export const Template = (args) => html`
+<fp-breadcrumbs
+    .list=${ifDefined(args.list)}
+></fp-breadcrumbs>`;
+
+export const SeparatorBreadcrumbs = (args) => html`
+<fp-breadcrumbs .list=${ifDefined(args.list)}
+    separator="→"
+></fp-breadcrumbs>
+<fp-breadcrumbs .list=${ifDefined(args.list)}
+    separator="⚡"
+></fp-breadcrumbs>`;
+
+export const FontSizeBreadcrumbs = (args) => html`
+<fp-breadcrumbs .list=${ifDefined(args.list)}
+    size="l"
+></fp-breadcrumbs>
+<fp-breadcrumbs .list=${ifDefined(args.list)}
+    size="xl"
+></fp-breadcrumbs>
+<fp-breadcrumbs .list=${ifDefined(args.list)}
+    size="2xl"
+></fp-breadcrumbs>
+<fp-breadcrumbs .list=${ifDefined(args.list)}
+    size="3xl"
+></fp-breadcrumbs>`;
+
+export const CustomStyleBreadcrumbs = (args) => html`
+<fp-breadcrumbs .list=${ifDefined(args.list)}
+></fp-breadcrumbs>`;
+
+# Breadcrumbs
+
+Breadcrumbs treat any node as a child and place a separator between them.
+
+<fp-alert variant="warning" icon>Sub-headings that should be spread as nodes should be given to the `fp-breadcrumbs` element in the form of an array as a property in the following format.</fp-alert>
+
+<fp-alert variant="info" icon> <fp-breadcrumbs list=[{title: 'React', href: 'https://reactjs.org/'},{title: "Vue", href: 'https://vuejs.org/'},{title: 'Svelte', href: 'https://svelte.dev/'}] /></fp-alert>
+
+
+## Basic Breadcrumbs
+Breadcrumbs help illustrate the subheadings of a node.
+<Canvas isColumn>
+    <Story name="Basic Usage" args={{
+       list:[{title: 'React', href: 'https://reactjs.org/'},{title: "Vue", href: 'https://vuejs.org/'},{title: 'Svelte', href: 'https://svelte.dev/'}]
+    }}>{Template.bind({})}</Story>
+</Canvas>    
+
+## Separator Breadcrumbs 
+
+You can give Breadcrumbs any separator you want.The default separator is **"/"**.
+
+<Canvas isColumn>
+    <Story name="Separator Usage" args={{
+       list:[{title: 'React', href: 'https://reactjs.org/'},{title: "Vue", href: 'https://vuejs.org/'},{title: 'Svelte', href: 'https://svelte.dev/'}]
+    }}>{SeparatorBreadcrumbs.bind({})}</Story>
+</Canvas>  
+
+
+## Font Size Breadcrumbs 
+
+We have 18 sizes of breadcrumbs: **5xs**, **4xs**,  **3xs**, **2xs**, **xs**,  **s**,  **m**,  **l**,  **xl**,  **2xl**,  **3xl**, **4xl**, **5xl**, **6xl**,  **xxl**, **2xxl**, **3xxl**, **4xxl**. The default size is **xs**.
+
+<Canvas isColumn>
+    <Story name="FontSize Usage" args={{
+       list:[{title: 'React', href: 'https://reactjs.org/'},{title: "Vue", href: 'https://vuejs.org/'},{title: 'Svelte', href: 'https://svelte.dev/'}]
+    }}>{FontSizeBreadcrumbs.bind({})}</Story>
+</Canvas>  
+
+## Custom Style Breadcrumbs 
+
+You can replace any or more of the children of the node you want with custom css.
+
+<fp-alert variant="warning" icon>It can be manipulated by giving the `styling` property to the child of the node to be manipulated.</fp-alert>
+
+<fp-alert variant="info" icon> <fp-breadcrumbs  list:[{title: 'React', href: 'https://reactjs.org/'},{title: "Vue", href: 'https://vuejs.org/', styling: 'color: red; background-color: blue'},{title: 'Svelte', href: 'https://svelte.dev/'}] /></fp-alert>
+
+<Canvas isColumn>
+    <Story name="Custom Style Usage" args={{
+       list:[{title: 'React', href: 'https://reactjs.org/'},{title: "Vue", href: 'https://vuejs.org/', styling: 'color: red; background-color: blue'},{title: 'Svelte', href: 'https://svelte.dev/'}]
+    }}>{CustomStyleBreadcrumbs.bind({})}</Story>
+</Canvas>  
+
+## Reference
+
+<ArgsTable of="fp-breadcrumbs" />

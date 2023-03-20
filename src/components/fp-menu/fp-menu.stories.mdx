@@ -1,0 +1,35 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta 
+    title="Components/Menu"
+    component="fp-menu"
+/>
+
+export const BasicUsage = (args) => html`
+ <fp-menu style="max-width: 250px;">
+  <fp-menu-item value="undo">Undo</fp-menu-item>
+  <fp-menu-item value="redo">Redo</fp-menu-item>
+  <fp-divider variant='primary' size='5xs' type='solid'></fp-divider>
+  <fp-menu-item value="cut">Cut</fp-menu-item>
+  <fp-menu-item value="copy">Copy</fp-menu-item>
+  <fp-menu-item value="paste">Paste</fp-menu-item>
+  <fp-menu-item value="delete">Delete</fp-menu-item>
+</fp-menu>`;
+
+# Menu
+
+A menu consists of menu items that offer selectable options to the user. 
+
+A menu can be composed of menu labels, menu dividers, and menu items. Keyboard interactions are supported in menus, allowing the user to select an option by typing.
+
+<Canvas isColumn>
+    <Story name="Basic Usage">{BasicUsage.bind({})}</Story>
+</Canvas>   
+
+## Reference
+
+<ArgsTable of="fp-menu" />

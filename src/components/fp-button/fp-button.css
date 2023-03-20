@@ -1,0 +1,195 @@
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(359deg); }
+  }
+
+  :host {
+    display: var(--fp-button-display, inline-block);
+    max-width: 100%;
+    position: relative;
+  }
+  
+  .button {
+    --main-color: var(--fp-color-primary);
+    --main-hover-color: var(--fp-color-primary-hover);
+    --text-hover-color: var(--fp-color-secondary-background);
+    --content-color: var(--fp-color-content-primary-contrast);
+    --bg-color: var(--main-color);
+    --border-color: var(--main-color);
+    --padding-vertical: var(--fp-size-2xs);
+    --padding-horizontal: var(--fp-size-l);
+    --margin-icon: var(--padding-vertical);
+    --icon-size: var(--fp-size-l);
+    --font: var(--fp-font-title-3-medium);
+    --height: var(--fp-size-5xl);
+  
+    display: flex;
+    gap: var(--margin-icon);
+    justify-content: var(--fp-button-justify, center);
+    align-items: center;
+    box-sizing: border-box;
+    width:100%;
+    height: var(--height);
+    border: solid 1px var(--border-color);
+    border-radius: 6px;
+    text-decoration: none;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    cursor: pointer;
+    background-color: var(--bg-color);
+    color: var(--content-color);
+    font: var(--font);
+    font-kerning: none;
+    user-select: none;
+  }
+  
+  :host(:hover) .button {
+    --bg-color: var(--main-hover-color);
+    --border-color: var(--main-hover-color);
+  }
+  
+  .label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  :host([size='small']) .button {
+    --font: var(--fp-font-title-4-medium);
+    --padding-vertical: var(--fp-size-4xs);
+    --padding-horizontal: var(--fp-size-2xs);
+    --icon-size: var(--fp-size-m);
+    --height: var(--fp-size-3xl);
+  }
+  
+  :host([size='large']) .button {
+    --font: var(--fp-font-title-3-medium);
+    --padding-vertical: var(--fp-size-s);
+    --padding-horizontal: var(--fp-size-3xl);
+    --margin-icon: var(--fp-size-2xs);
+    --height: var(--fp-size-6xl);
+  }
+  
+  .button:focus {
+    outline: none;
+  }
+  
+  .button:focus-visible {
+    position: relative;
+    outline: none;
+  }
+  
+  .button:focus-visible::after {
+    border: 2px solid var(--main-color);
+    border-radius: var(--fp-border-radius-l);
+    content: '';
+    position: absolute;
+    inset: -4px;
+  }
+
+  .loading-icon {
+    animation: spin 1s linear infinite;
+    font-size: var(--icon-size);
+  }
+  
+  :host ::slotted(fp-icon) {
+    font-size: var(--icon-size);
+  }
+
+  :host([loading]) ::slotted(fp-icon) {
+    display: none;
+  }
+  
+  :host .has-icon:not(.has-content) {
+    --padding-horizontal: var(--padding-vertical);
+    --margin-icon: 0;
+  }
+  
+  :host([variant='secondary']) .button {
+    --bg-color: transparent;
+    --content-color: var(--main-color);
+  }
+  
+  :host([variant='tertiary']) .button {
+    --content-color: var(--main-color);
+    --border-color: transparent;
+    --bg-color: transparent;
+  }
+  
+  :host([kind='neutral']) .button {
+    --main-color: var(--fp-color-secondary);
+    --main-hover-color: var(--fp-color-secondary-hover);
+  }
+  
+  :host([kind='success']) .button {
+    --main-color: var(--fp-color-success);
+    --main-hover-color: var(--fp-color-success-hover);
+  }
+  
+  :host([kind='danger']) .button {
+    --main-color: var(--fp-color-danger);
+    --main-hover-color: var(--fp-color-danger-hover);
+  }
+  
+  :host([disabled]) {
+    cursor: not-allowed;
+  }
+  
+  :host([loading]) {
+    cursor: wait;
+  }
+
+  :host([loading]) fp-icon:not(.loading-icon) {
+    display: none;
+  }
+  
+  :host .button[aria-disabled='true'] {
+    --main-color: var(--fp-color-tertiary);
+    --main-hover-color: var(--fp-color-tertiary);
+    --content-color: var(--fp-color-content-passive);
+    --bg-color: var(--main-color);
+  
+    pointer-events: none;
+    text-decoration: none;
+  }
+  
+  :host([variant='tertiary']) .button[aria-disabled='true'] {
+    --main-color: transparent;
+  }
+  
+  :host([variant='secondary']:hover) .button[aria-disabled='false'] {
+    --content-color: var(--fp-color-content-primary-contrast);
+    --bg-color: var(--main-hover-color);
+  }
+  
+  :host([variant='tertiary']:hover) .button[aria-disabled='false'] {
+    --content-color: var(--main-hover-color);
+    --bg-color: var(--text-hover-color);
+  }
+  
+  :host([dropdown]) .open {
+    display: none;
+  }
+  
+  :host([dropdown]) .active .open {
+    display: inline-block;
+  }
+  
+  :host([dropdown]) .active .close {
+    display: none;
+  }
+  
+  :host .active.button {
+    --bg-color: var(--main-hover-color);
+    --border-color: var(--main-hover-color);
+  }
+  
+  :host([variant='secondary']) .active.button {
+    --content-color: var(--fp-color-content-primary-contrast);
+    --bg-color: var(--main-hover-color);
+  }
+  
+  :host([variant='tertiary']) .active.button {
+    --content-color: var(--main-color);
+    --bg-color: var(--fp-color-tertiary);
+    --border-color: transparent;
+  }

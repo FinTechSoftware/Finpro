@@ -1,0 +1,41 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Tab/TabPanel"
+  component="fp-tab-panel"
+  argTypes={{
+    tab: {
+        control: 'text'
+    }
+  }}
+/>
+
+export const TabGroup = (args) => html`
+  <fp-tab-group>
+    <fp-tab name="test-1" slot="tabs">Tab 1</fp-tab>
+    <fp-tab name="test-2" slot="tabs">Tab 2</fp-tab>
+    <fp-tab name="test-3" slot="tabs">Tab 3</fp-tab>
+    <fp-tab-panel tab="test-1">This is general Tab Panel</fp-tab-panel>
+    <fp-tab-panel tab="test-2">Panel 2</fp-tab-panel>
+    <fp-tab-panel tab="test-3">Panel 3</fp-tab-panel>
+  </fp-tab-group>`;
+
+# Tab Panel
+Tab groups contain tab panels that display tabbed content.
+
+<fp-alert variant="warning" icon>Inline styles in examples are only for **demo purposes**. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+<Canvas>
+<Story name="Basic Usage">
+    {TabGroup.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-tab-panel" />
+

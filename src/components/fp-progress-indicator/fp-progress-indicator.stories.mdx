@@ -1,0 +1,102 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Progress Indicator"
+  component="fp-progress-indicator"
+  argTypes={{
+    size: {
+      control: {
+        type: 'select',
+        options: ['small','medium', 'large']
+      },
+      type: 'string'
+    },
+    max: {
+      control: 'text',
+      type: 'number'
+    },
+    value: {
+      control: 'text',
+      type: 'number'
+    },
+    failed: {
+      control: 'boolean',
+    },
+  }}
+/>
+
+export const ProgressIndicatorTemplate = (args) => html`
+<fp-progress-indicator
+    size='${ifDefined(args.size)}'
+    max='${ifDefined(args.max)}'
+    value='${ifDefined(args.value)}'
+    ?failed=${args.failed}
+    style='${ifDefined(args.styles ? styleMap(args.styles) : undefined)}'></fp-progress-indicator>`;
+
+export const FailedTemplate = (args) => html`
+<div>
+<p style='color: var(--fp-color-danger); margin: var(--fp-size-3xs); font: var(--fp-font-title-4-regular)'>Upload Failed - Image must not be larger than 5mb.</p>${ProgressIndicatorTemplate({ value:'100', failed:true, ...args })}
+</div>`;
+
+export const WithMaxTemplate = (args) => html`
+<div>
+<p style='color: var(--fp-color-content-secondary); margin: var(--fp-size-3xs); font: var(--fp-font-title-4-regular)'> Completed Tasks: <b style='color: var(--fp-color-success)'> 5/8 </b></p>${ProgressIndicatorTemplate({ max:'8', value: '5', ...args })}
+</div>`;
+
+# Progress Indicator
+
+A progress indicator is a UI component that informs users about the status and progression of a process, providing feedback on how long the user might have to wait.
+
+It is typically used for processes that take a considerable or unknown amount of time, such as system operations like downloading or uploading, loading data, submitting forms, or saving updates. The progress indicator visually displays the progress of the operation to the user.
+
+<fp-alert variant="warning" icon>Inline styles in examples are only for **demo purposes**. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+## Basic Usage
+
+The default range for a progress indicator is 0 to 100, with a default `max` value of 100. Therefore, the `value` property must be a valid floating point number between 0 and `max`, or between 0 and 100 if the `max` property is not set.
+
+<Canvas>
+  <Story name="Basic Usage" args={{ value: '50' }}>
+    {ProgressIndicatorTemplate.bind({})}
+  </Story>
+</Canvas>
+
+The `value` property of a progress indicator does not have to be relative to 100 percent. For instance, if there are a total of 8 tasks and 5 tasks have been completed, you can set the `max` property to 8 and the `value` property to 5. The progress indicator will then divide into 8 segments, with 5 segments being filled to indicate the progress.
+
+<Canvas>
+  <Story name="Usage With Max Value">
+    {WithMaxTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Progress Indicator Status
+By default, the progress indicator is displayed in success mode, which is indicated by the color green. However, if the process being tracked fails, such as a failed upload or a failure to complete a task, you can set the `failed` parameter to display the progress indicator in a fail status.
+
+<Canvas>
+  <Story name="Progress Indicator Status">
+    {FailedTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Progress Indicator Sizes
+
+We have 3 sizes of progress indicators: `large`, `medium`, `small`. The default size is `medium`.
+
+<Canvas isColumn>
+   <Story name="Progress Indicator Small" args={{ size: 'small', value: '45' }}>
+     {ProgressIndicatorTemplate.bind({})}
+   </Story>
+   <Story name="Progress Indicator Medium" args={{ size: 'medium', value: '45' }}>
+     {ProgressIndicatorTemplate.bind({})}
+   </Story>
+   <Story name="Progress Indicator Large" args={{ size: 'large', value: '45' }}>
+     {ProgressIndicatorTemplate.bind({})}
+   </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-progress-indicator" />

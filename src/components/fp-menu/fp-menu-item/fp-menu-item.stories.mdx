@@ -1,0 +1,118 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta 
+    title="Components/Menu/MenuItem"
+    component="fp-menu-item"
+/>
+
+export const BasicUsage = (args) => html`
+<fp-menu style="max-width: 225px;">
+  <fp-menu-item>Option 1</fp-menu-item>
+  <fp-menu-item>Option 2</fp-menu-item>
+  <fp-menu-item>Option 3</fp-menu-item>
+  <fp-divider variant='primary' size='5xs' type='solid'></fp-divider>
+  <fp-menu-item type="checkbox" checked>Checkbox</fp-menu-item>
+  <fp-menu-item disabled>Disabled</fp-menu-item>
+  <fp-divider variant='primary' size='5xs' type='solid'></fp-divider>
+  <fp-menu-item>
+    Prefix Icon
+    <fp-icon slot="prefix" name="live_support" style="font-size: var(--fp-font-size-l); color: var(--fp-color-primary);"></fp-icon>
+  </fp-menu-item>
+  <fp-menu-item>
+    Suffix Icon
+    <fp-icon slot="suffix" name="heart_fill" style="font-size: var(--fp-font-size-l); color: var(--fp-color-danger);"></fp-icon>
+  </fp-menu-item>
+</fp-menu>
+`
+
+export const DisabledUsage = (args) => html`
+<fp-menu style="max-width: 225px;">
+  <fp-menu-item>Option 1</fp-menu-item>
+  <fp-menu-item disabled>Option 2</fp-menu-item>
+  <fp-menu-item>Option 3</fp-menu-item>
+</fp-menu>`
+
+export const PrefixSuffixUsage = (args) => html`
+<fp-menu style="max-width: 225px;">
+  <fp-menu-item>
+    <fp-icon slot="prefix" name="home" style="font-size: var(--fp-font-size-l); color: var(--fp-color-primary);"></fp-icon>
+    Home
+  </fp-menu-item>
+  <fp-menu-item>
+    <fp-icon slot="prefix" name="message" style="font-size: var(--fp-font-size-l); color: var(--fp-color-primary);"></fp-icon>
+    Messages
+    <fp-badge slot="suffix" variant="primary" pill>12</fp-badge>
+  </fp-menu-item>
+  <fp-divider variant='primary' size='5xs' type='solid'></fp-divider>
+  <fp-menu-item>
+    <fp-icon slot="prefix" name="settings" style="font-size: var(--fp-font-size-l); color: var(--fp-color-secondary);"></fp-icon>
+    Settings
+  </fp-menu-item>
+</fp-menu>`
+
+export const CheckboxMenuItemsUsage = (args) => html`
+<fp-menu style="max-width: 225px;">
+  <fp-menu-item type="checkbox">Autosave</fp-menu-item>
+  <fp-menu-item type="checkbox" checked>Check Spelling</fp-menu-item>
+  <fp-menu-item type="checkbox">Word Wrap</fp-menu-item>
+</fp-menu>`
+
+export const ValueSelectionUsage = (args) => html`
+<fp-menu class="menu-value" style="max-width: 225px;">
+  <fp-menu-item value="opt-1">Option 1</fp-menu-item>
+  <fp-menu-item value="opt-2">Option 2</fp-menu-item>
+  <fp-menu-item value="opt-3">Option 3</fp-menu-item>
+  <fp-divider variant='primary' size='5xs' type='solid'></fp-divider>
+  <fp-menu-item type="checkbox" value="opt-4">Checkbox 4</fp-menu-item>
+  <fp-menu-item type="checkbox" value="opt-5">Checkbox 5</fp-menu-item>
+  <fp-menu-item type="checkbox" value="opt-6">Checkbox 6</fp-menu-item>
+</fp-menu>`
+
+
+# Menu Item
+
+In a menu, users can choose from a list of options provided by menu items.
+
+<Canvas isColumn>
+    <Story name="Basic Usage">{BasicUsage.bind({})}</Story>
+</Canvas>    
+
+
+## Disabled
+
+To prevent a menu item from being selected, add the `disabled` attribute to it.
+<Canvas isColumn>
+    <Story name="Disabled Usage">{DisabledUsage.bind({})}</Story>
+</Canvas>    
+
+## Prefix & Suffix
+
+Add content to the start and end of menu items using the prefix and suffix slots.
+<Canvas isColumn>
+    <Story name="Prefix&Suffix Usage">{PrefixSuffixUsage.bind({})}</Story>
+</Canvas>    
+
+## Checkbox Menu Items
+By setting the type attribute to checkbox, you can create a menu item that will toggle on and off when clicked. You can also use the checked attribute to specify the initial state of the checkbox.
+
+Checkbox menu items look the same as regular menu items and don't have any visual distinction. Their toggle capability is usually understood from the context, similar to how it works in the menus of native apps.
+
+<Canvas isColumn>
+    <Story name="Checkbox Menu Items Usage">{CheckboxMenuItemsUsage.bind({})}</Story>
+</Canvas>    
+
+## Value & Selection
+
+If you want to assign a hidden value, like a unique identifier, to a menu item, you can use the value attribute. Once an item is selected, the sl-select event is emitted, and you can access the selected item's reference at event.detail.item. This reference allows you to retrieve the selected item's value, checked state, and other properties.
+
+<Canvas isColumn>
+    <Story name="Value & Selection Usage">{ValueSelectionUsage.bind({})}</Story>
+</Canvas>    
+
+## Reference
+
+<ArgsTable of="fp-menu-item" />

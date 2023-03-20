@@ -1,0 +1,8 @@
+:host {
+    display: inline-block;
+}
+
+.anchor a {
+    text-decoration: none;
+    color: #000;
+}

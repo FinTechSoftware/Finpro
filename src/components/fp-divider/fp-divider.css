@@ -1,0 +1,490 @@
+:host {
+    display: block;
+}
+
+.divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-border);
+
+    display: flex;
+    border-top: var(--border-top);
+    margin-top: var(--fp-size-l);
+    margin-bottom: var(--fp-size-l);
+}
+
+
+
+:host([type='dashed']) .divider {
+    --border-top: var(--fp-size-4xs) dashed var(--fp-color-border);
+}
+
+:host([type='dashed'][variant='primary']) .divider {
+    --border-top: var(--fp-size-3xs) dashed var(--fp-color-border);
+}
+
+:host([type='dashed'][variant='secondary']) .divider {
+    --border-top: var(--fp-size-2xs) dashed var(--fp-color-secondary);
+}
+
+:host([type='dashed'][variant='success']) .divider {
+    --border-top: var(--fp-size-xs) dashed var(--fp-color-success);
+}
+
+:host([type='dashed'][variant='danger']) .divider {
+    --border-top: var(--fp-size-s) dashed var(--fp-color-danger);
+}
+
+
+
+:host([type='dotted']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-border);
+}
+
+:host([type='dotted'][variant='primary']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-border);
+}
+
+:host([type='dotted'][variant='secondary']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-secondary);
+}
+
+:host([type='dotted'][variant='success']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-success);
+}
+
+:host([type='dotted'][variant='danger']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-danger);
+}
+
+
+
+:host([type='solid']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='primary']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='secondary']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-secondary);
+}
+
+:host([type='solid'][variant='success']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-success);
+}
+
+:host([type='solid'][variant='danger']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-danger);
+}
+
+
+:host([type='rounded']) .divider {
+    border-top: var(--fp-size-xs) solid var(--fp-color-border);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='primary']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-border);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='secondary']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-secondary);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='success']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-success);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='danger']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-danger);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='solid'][variant='primary'][size='5xs']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='primary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='primary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='primary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='primary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='primary'][size='s']) .divider {
+    --border-top: var(--fp-size-s) solid var(--fp-color-border);
+}
+
+:host([type='solid'][variant='secondary'][size='5xs']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-secondary);
+}
+
+:host([type='solid'][variant='secondary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-secondary);
+}
+
+:host([type='solid'][variant='secondary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-secondary);
+}
+
+:host([type='solid'][variant='secondary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-secondary);
+}
+
+:host([type='solid'][variant='secondary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-secondary);
+}
+
+:host([type='solid'][variant='success'][size='5xs']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-success);
+}
+
+:host([type='solid'][variant='success'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-success);
+}
+
+:host([type='solid'][variant='success'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-success);
+}
+
+:host([type='solid'][variant='success'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-success);
+}
+
+:host([type='solid'][variant='success'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-success);
+}
+
+
+:host([type='solid'][variant='danger'][size='5xs']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-danger);
+}
+
+:host([type='solid'][variant='danger'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-danger);
+}
+
+:host([type='solid'][variant='danger'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-danger);
+}
+
+:host([type='solid'][variant='danger'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-danger);
+}
+
+:host([type='solid'][variant='danger'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-danger);
+}
+
+
+:host([type='dashed'][variant='primary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) dashed var(--fp-color-border);
+}
+
+:host([type='dashed'][variant='primary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dashed var(--fp-color-border);
+}
+
+:host([type='dashed'][variant='primary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dashed var(--fp-color-border);
+}
+
+:host([type='dashed'][variant='primary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dashed var(--fp-color-border);
+}
+
+:host([type='dashed'][variant='primary'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dashed var(--fp-color-border);
+}
+
+:host([type='dashed'][variant='secondary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) dashed var(--fp-color-secondary);
+}
+
+:host([type='dashed'][variant='secondary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dashed var(--fp-color-secondary);
+}
+
+:host([type='dashed'][variant='secondary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dashed var(--fp-color-secondary);
+}
+
+:host([type='dashed'][variant='secondary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dashed var(--fp-color-secondary);
+}
+
+:host([type='dashed'][variant='secondary'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dashed var(--fp-color-secondary);
+}
+
+:host([type='dashed'][variant='success'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) dashed var(--fp-color-success);
+}
+
+:host([type='dashed'][variant='success'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dashed var(--fp-color-success);
+}
+
+:host([type='dashed'][variant='success'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dashed var(--fp-color-success);
+}
+
+:host([type='dashed'][variant='success'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dashed var(--fp-color-success);
+}
+
+:host([type='dashed'][variant='success'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dashed var(--fp-color-success);
+}
+
+
+:host([type='dashed'][variant='danger'][size='4xs']) .divider {
+    --border-top: var(--fp-size-3xs) dashed var(--fp-color-danger);
+}
+
+:host([type='dashed'][variant='danger'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dashed var(--fp-color-danger);
+}
+
+:host([type='dashed'][variant='danger'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dashed var(--fp-color-danger);
+}
+
+:host([type='dashed'][variant='danger'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dashed var(--fp-color-danger);
+}
+
+:host([type='dashed'][variant='danger'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dashed var(--fp-color-danger);
+}
+
+
+:host([type='dotted'][variant='primary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-border);
+}
+
+:host([type='dotted'][variant='primary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dotted var(--fp-color-border);
+}
+
+:host([type='dotted'][variant='primary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dotted var(--fp-color-border);
+}
+
+:host([type='dotted'][variant='primary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dotted var(--fp-color-border);
+}
+
+:host([type='dotted'][variant='primary'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dotted var(--fp-color-border);
+}
+
+:host([type='dotted'][variant='secondary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-secondary);
+}
+
+:host([type='dotted'][variant='secondary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dotted var(--fp-color-secondary);
+}
+
+:host([type='dotted'][variant='secondary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dotted var(--fp-color-secondary);
+}
+
+:host([type='dotted'][variant='secondary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dotted var(--fp-color-secondary);
+}
+
+:host([type='dotted'][variant='secondary'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dotted var(--fp-color-secondary);
+}
+
+:host([type='dotted'][variant='success'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-success);
+}
+
+:host([type='dotted'][variant='success'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dotted var(--fp-color-success);
+}
+
+:host([type='dotted'][variant='success'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dotted var(--fp-color-success);
+}
+
+:host([type='dotted'][variant='success'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dotted var(--fp-color-success);
+}
+
+:host([type='dotted'][variant='success'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dotted var(--fp-color-success);
+}
+
+
+:host([type='dotted'][variant='danger'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) dotted var(--fp-color-danger);
+}
+
+:host([type='dotted'][variant='danger'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) dotted var(--fp-color-danger);
+}
+
+:host([type='dotted'][variant='danger'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) dotted var(--fp-color-danger);
+}
+
+:host([type='dotted'][variant='danger'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) dotted var(--fp-color-danger);
+}
+
+:host([type='dotted'][variant='danger'][size='s']) .divider {
+    --border-top: var(--fp-size-s) dotted var(--fp-color-danger);
+}
+
+:host([type='rounded'][variant='primary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-border);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='primary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-border);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='primary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-border);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='primary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-border);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='primary'][size='s']) .divider {
+    --border-top: var(--fp-size-s) solid var(--fp-color-border);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='secondary'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-secondary);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='secondary'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-secondary);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='secondary'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-secondary);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='secondary'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-secondary);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='secondary'][size='s']) .divider {
+    --border-top: var(--fp-size-s) solid var(--fp-color-secondary);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='success'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-success);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='success'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-success);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='success'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-success);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='success'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-success);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='success'][size='s']) .divider {
+    --border-top: var(--fp-size-s) solid var(--fp-color-success);
+    border-radius: var(--fp-size-3xs);
+}
+
+
+:host([type='rounded'][variant='danger'][size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-danger);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='danger'][size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-danger);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='danger'][size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-danger);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='danger'][size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-danger);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([type='rounded'][variant='danger'][size='s']) .divider {
+    --border-top: var(--fp-size-s) solid var(--fp-color-danger);
+    border-radius: var(--fp-size-3xs);
+}
+
+:host([size='4xs']) .divider {
+    --border-top: var(--fp-size-4xs) solid var(--fp-color-border);
+}
+
+:host([size='3xs']) .divider {
+    --border-top: var(--fp-size-3xs) solid var(--fp-color-border);
+}
+
+:host([size='2xs']) .divider {
+    --border-top: var(--fp-size-2xs) solid var(--fp-color-border);
+}
+
+:host([size='xs']) .divider {
+    --border-top: var(--fp-size-xs) solid var(--fp-color-border);
+}
+
+:host([size='s']) .divider {
+    --border-top: var(--fp-size-s) solid var(--fp-color-border);
+}
+
+:host([variant='primary']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-border);
+}
+
+:host([variant='secondary']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-secondary);
+}
+
+:host([variant='success']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-success);
+}
+
+:host([variant='danger']) .divider {
+    --border-top: var(--fp-size-5xs) solid var(--fp-color-danger);
+}

@@ -1,0 +1,38 @@
+:host {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fp-size-xs);
+}
+
+.caption {
+    font: var(--fp-font-caption);
+    font-size: var(--fp-font-size-xs);
+    font-weight: var(--fp-font-weight-medium);
+    line-height: var(--fp-font-size-s);
+    color: var(--fp-color-content-secondary);
+}
+
+:host(:not(:first-child)) {
+  border-top: 1px solid var(--fp-color-border);
+}
+
+:host(:not(:last-child)) {
+  border-bottom: 1px solid var(--fp-color-border);
+}
+
+:host(:not([caption])) ::slotted(:first-child) {
+    padding-block: var(--fp-size-xs) 0;
+}
+
+:host(:not(:last-child)) ::slotted(:last-child) {
+    padding-block: 0 var(--fp-size-xs);
+}
+
+:host(:not(:first-child)) .caption {
+    padding-block: var(--fp-size-xs) 0;
+}

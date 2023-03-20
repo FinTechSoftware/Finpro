@@ -1,0 +1,82 @@
+import { html } from 'lit';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/QrCode"
+  component="fp-qr-code"
+  argTypes={{
+    value: {
+      control: 'text',
+      
+    }
+  }}
+/>
+
+export const BasicUsage = (args) => html`
+        <fp-qr-code  
+        value="https://fintechyazilim.com"
+        label="Scan this code to visit FintechYazilim on the web!"></fp-qr-code>`
+
+export const ColorUsage = (args) => html`
+        <fp-qr-code  
+        fill="deepskyblue"
+        background="white"
+        value="https://fintechyazilim.com"></fp-qr-code>`
+
+export const SizeUsage = (args) => html`
+        <fp-qr-code  
+        size="64"
+        value="https://fintechyazilim.com"></fp-qr-code>`
+
+export const RadiusUsage = (args) => html`
+        <fp-qr-code  
+        radius="0.7"
+        background="deepskyblue"
+        fill="white"
+        value="https://fintechyazilim.com"></fp-qr-code>`
+
+# QR Code
+
+QR codes are a convenient way to share brief pieces of information with users who can easily scan them with a smartphone. With most smartphones equipped with built-in QR code readers, users can simply point their camera at a QR code to decode it and access a website, dial a phone number, read a message, or perform other actions. To generate a QR code and display it, you can use the Canvas API.
+
+<Canvas>
+<Story name="Basic Usage">
+    {BasicUsage.bind({})}
+  </Story>
+</Canvas>
+
+## Colors 
+
+Modify the colors of the QR code using the fill and background attributes, while ensuring good contrast for optimal compatibility with QR code scanners.
+
+<Canvas>
+<Story name="Colors Usage">
+    {ColorUsage.bind({})}
+  </Story>
+</Canvas>
+
+## Size
+
+Change the size of the QR code by using the size attribute.
+
+<Canvas>
+<Story name="Size Usage">
+    {SizeUsage.bind({})}
+  </Story>
+</Canvas>
+
+## Radius
+
+Create a rounded effect with the radius attribute.
+
+<Canvas>
+<Story name="Radius Usage">
+    {RadiusUsage.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-qr-code" />
+
+

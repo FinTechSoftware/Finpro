@@ -1,0 +1,122 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Drawer"
+  component="fp-drawer"
+  parameters={{
+    layout: 'fullscreen',
+    noAnimationOnChromaticLayout: true,
+    chromatic: {
+      viewports: [768, 320],
+    },
+  }}
+  argTypes={{
+    open: {
+      control: "boolean",
+      default: false
+    },
+    caption: {
+      control: "text",
+      default: "",
+    },
+    externalLink: {
+      control: "text",
+      default: "",
+    },
+    embedUrl: {
+      control: "text",
+      default: "",
+    },
+  }}
+/>
+
+export const openDialog = async (event, args) => {
+  document.getElementById(args.id).open=true
+}
+
+export const DummyContent = () => html`
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </p>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </p>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </p>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </p>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </p>
+`
+
+export const DrawerTemplate = (args) => html`
+  <fp-drawer 
+    id=${ifDefined(args.id)}
+    caption=${ifDefined(args.caption)}
+    embed-url=${ifDefined(args.embedUrl)}
+    external-link=${ifDefined(args.externalLink)}
+  >
+      <div style="font: var(--fp-font-body-text-2)">
+        ${ifDefined(args.content)}
+      </div>
+  </fp-drawer>`;
+
+export const StoryTemplate = (args) => html`
+  ${DrawerTemplate(args)}
+  <fp-button @click="${(event)=>openDialog(event, args)}">${ifDefined(args.buttonText)}</fp-button>`;
+
+# Drawer
+
+A menu offers special options and functions without the user leaving the current page.
+
+<fp-alert variant="warning" icon>Inline styles in examples are only for **demo purposes**. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+### Design Rules
+
+* The drawer component comes with a header section that can display a title and an external link, which are both optional.
+* A close button is always present on the header section of the drawer, allowing users to close the drawer by clicking it.
+* By default, the drawer can only be closed by clicking the close button, and clicking anywhere else outside of the drawer will not close it.
+* The drawer is located on the right side of the page and is expanded to the full height of the page.
+* If the title is too long to fit in one line, the drawer component will automatically make it multiline.
+* When the drawer is too large to fit in its fixed size, it will switch to mobile view.
+* The drawer component has an iframe attribute that allows it to handle iframe rendering itself.
+* Only one drawer can be displayed at a time, and opening one drawer will automatically close any others that may be open.
+
+## Usage
+
+<Canvas>
+  <Story name="Default Values"
+         play={(event) => openDialog(event,{id:'drawer-1'})}
+         args={{id:"drawer-1", buttonText:"default drawer", content:DummyContent()}}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="With caption"
+         play={(event)=> openDialog(event,{id:'drawer-2'})}
+         args={{id:"drawer-2", buttonText:"with caption", caption: "Caption", content:'example content'}}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="With long caption"
+         play={(event) => openDialog(event,{id:'drawer-3'})}
+         args={{id:"drawer-3", buttonText:"with long caption", caption: "This drawer has a long caption and automatically handle it", content:'example content'}}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="With caption and externalLink"
+         play={(event) => openDialog(event,{id:'drawer-4'})}
+         args={{id:"drawer-4", buttonText:"with caption and external", caption: "Caption", externalLink:"some-url", content:'example content'}}>
+    {StoryTemplate.bind({})}
+  </Story>
+  <Story name="With caption and embedUrl"
+         play={(event) => openDialog(event,{id:'drawer-5'})}
+         args={{id:"drawer-5", buttonText:"with caption, embedUrl", caption: "Caption", embedUrl:"/assets/demo-iframe.html"}}>
+    {StoryTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-drawer" />

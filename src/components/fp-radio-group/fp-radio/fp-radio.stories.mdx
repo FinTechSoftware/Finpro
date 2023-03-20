@@ -1,0 +1,76 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Radio/Radio"
+  component="fp-radio"
+  argTypes={{
+    label: {
+      control: 'text',
+      type: 'string'
+    },
+    value: {
+      control: 'text',
+      type: 'string'
+    },
+    disabled: {
+      control: 'boolean',
+    },
+  }}
+/>
+
+export const RadioTemplate = (args) => html`
+<fp-radio
+    class=${ifDefined(args.class)}
+    value=${ifDefined(args.value)}
+    ?disabled=${args.disabled}
+    >${args.label}</fp-radio>`
+
+export const RadioGroupTemplate = (args) => html`
+<fp-radio-group value=${args.value}>
+  <fp-radio
+    class=${ifDefined(args.class)}
+    value=${ifDefined(args.value)}
+    ?disabled=${args.disabled}
+    >${args.label}</fp-radio>
+</fp-radio-group>`
+
+# Radio
+
+The radio component is used to provide options for a `fp-radio-group` component.
+
+<Canvas>
+  <Story name="Basic Usage" args={{ label: 'Credit Card', value: 'cc' }}>
+    {RadioTemplate.bind({})}
+  </Story>
+</Canvas>
+
+If the `value` of a wrapping `fp-radio-group` component matches the value of an option, that option will be selected.
+
+<Canvas>
+  <Story name="Selected option" args={{ label: 'Credit Card', value: 'cc' }}>
+    {RadioGroupTemplate.bind({})}
+  </Story>
+</Canvas>
+
+To make a radio option unselectable, you can add the `disabled` attribute.
+
+<Canvas>
+  <Story name="Disabled option" args={{ label: 'Cash Payment', value: 'cash', disabled: true }}>
+    {RadioTemplate.bind({})}
+  </Story>
+</Canvas>
+
+If the value of a `radio-group` is the same as the value of a disabled option, that option can be both disabled and selected at the same time.
+
+<Canvas>
+  <Story name="Disabled and selected option" args={{ label: 'Cash Payment', value: 'cash', disabled: true }}>
+    {RadioGroupTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-radio" />

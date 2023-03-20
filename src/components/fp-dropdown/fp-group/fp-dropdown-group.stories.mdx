@@ -1,0 +1,50 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import {
+  Meta,
+  Canvas,
+  ArgsTable,
+  Story,
+} from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Dropdown Button/Dropdown Group"
+  component="fp-dropdown-group"
+  argTypes={{
+    caption: {
+      control: {
+        type: 'text'
+      },
+    },
+  }}
+/>
+
+# Dropdown Group
+The Dropdown Group component is designed to be utilized within either the fp-dropdown or fp-dropdown-group component, and serves to exhibit an operation within these components.
+
+export const Template = (args) => html`
+    <fp-dropdown>
+    <fp-dropdown-item>Action outside of Group</fp-dropdown-item>
+  <fp-dropdown-group
+    caption='${ifDefined(args.caption)}'
+  ><fp-dropdown-item>Action 1</fp-dropdown-item><fp-dropdown-item>Action 1</fp-dropdown-item></fp-dropdown-group>
+  </fp-dropdown>
+`
+
+## Basic Usage
+<Canvas>
+  <Story name="Basic Usage">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## With Caption
+<Canvas>
+  <Story name="With Caption" args={{ caption: "Caption" }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Reference
+
+<ArgsTable of="fp-dropdown-group" />

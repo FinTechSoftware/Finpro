@@ -1,0 +1,129 @@
+:host {
+    display: block;
+}
+
+.skeleton {
+    --width: 100%;
+    --height: var(--fp-size-2xs);
+    --border-radius: var(--fp-border-radius-m);
+    --background-color: var(--fp-color-skeleton);
+
+    position: relative;
+    display: flex;
+    width: var(--width);
+    height: var(--height);
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+    margin-top: var( --fp-size-3xs);
+}
+
+.skeleton::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: var(--width);
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+}
+
+:host([circle]) .skeleton {
+    --width: var(--fp-size-xxl);
+    --height: var(--fp-size-xxl);
+    --border-radius:  var(--fp-border-radius-circle);
+}
+
+:host([radius='xs']) .skeleton {
+    --border-radius:  var(--fp-border-radius-xs);
+}
+
+:host([radius='s']) .skeleton {
+    --border-radius:  var(--fp-border-radius-s);
+}
+
+:host([radius='m']) .skeleton {
+    --border-radius:  var(--fp-border-radius-m);
+}
+
+:host([radius='l']) .skeleton {
+    --border-radius:  var(--fp-border-radius-l);
+}
+
+:host([radius='xl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-xl);
+}
+
+:host([radius='2xl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-2xl);
+}
+
+:host([radius='3xl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-3xl);
+}
+
+:host([radius='4xl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-4xl);
+}
+
+:host([radius='5xl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-5xl);
+}
+
+:host([radius='6xl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-6xl);
+}
+
+:host([radius='xxl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-xxl);
+}
+
+:host([radius='2xxl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-2xxl);
+}
+
+:host([radius='3xxl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-3xxl);
+}
+
+:host([radius='4xxl']) .skeleton {
+    --border-radius:  var(--fp-border-radius-4xxl);
+}
+
+:host([variant='primary']) .skeleton {
+    --background-color: var(--fp-color-skeleton)
+  }
+  
+  :host([variant='secondary']) .skeleton {
+    --background-color: var(--fp-color-secondary)
+  }
+  
+  :host([variant='success']) .skeleton {
+    --background-color: var(--fp-color-success)
+  }
+  
+  :host([variant='danger']) .skeleton {
+    --background-color: var(--fp-color-danger)
+  }
+
+:host([animation]) .skeleton::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+    background: linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, .5) 50%,
+        rgba(255, 255, 255, 0) 60%
+    ) var(--background-color);
+    background-size: 200% 100%;
+    background-position-x: 180%;
+    animation: 1s animation ease-in-out infinite;
+}
+
+@keyframes animation {
+    to {
+      background-position-x: -20%;
+    }
+}

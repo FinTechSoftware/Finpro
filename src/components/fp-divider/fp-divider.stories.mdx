@@ -1,0 +1,112 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta 
+    title="Components/Divider"
+    component="fp-divider" 
+    argTypes={{
+        variant: {
+            options: ['primary', 'secondary', 'success', 'danger'],
+            default: 'primary',
+            control: { type: 'select' }
+        },
+        type: {
+            options: ['dashed', 'dotted', 'solid', 'rounded'],
+            control: { type: 'select' }
+        },
+        size: {
+             options: ['4xs' | '3xs' | '2xs' | 'xs' | 's'],
+            control: {type: 'select'}
+        }
+    }}
+/>
+
+export const DividerType = (args) => html`<fp-divider
+    variant=${ifDefined(args.variant)}
+    type=${ifDefined(args.type)}
+    size=${ifDefined(args.size)}
+></fp-divider>`;
+
+export const Template = (args) => html`
+    <fp-divider></fp-divider>`;
+
+export const DividerSize = (args) => html`
+    ${DividerType({ size: '4xs', ...args })}
+    ${DividerType({ size: '3xs', ...args })}
+    ${DividerType({ size: '2xs', ...args })}
+    ${DividerType({ size: 'xs', ...args })}
+    ${DividerType({ size: 's', ...args })}`;
+
+export const DividerVariants = (args) => html`
+    ${DividerType({ variant: 'primary', ...args })}
+    ${DividerType({ variant: 'secondary', ...args })}
+    ${DividerType({ variant: 'success', ...args })}
+    ${DividerType({ variant: 'danger', ...args })}`;
+
+export const DividerTypes = (args) => html`
+    ${DividerType({ type: 'solid', ...args })}
+    ${DividerType({ type: 'dashed', ...args })}
+    ${DividerType({ type: 'dotted', ...args })}
+    ${DividerType({ type: 'rounded', ...args })}`;
+
+export const DividerExample = (args) => html`
+    ${DividerType({ type: 'solid', size: '4xs', variant: 'danger', ...args })}
+    ${DividerType({ type: 'solid', size: '3xs', variant: 'primary', ...args })}
+    ${DividerType({ type: 'solid', size: '2xs', variant: 'secondary', ...args })}
+    ${DividerType({ type: 'solid', size: 'xs', variant: 'primary', ...args })}
+    ${DividerType({ type: 'solid', size: '4xs', variant: 'success', ...args })}
+    ${DividerType({ type: 'dashed', size: '3xs', variant: 'success', ...args })}
+    ${DividerType({ type: 'dashed', size: '2xs', variant: 'success', ...args })}
+    ${DividerType({ type: 'dashed', size: 'xs', variant: 'success', ...args })}
+    ${DividerType({ type: 'dashed', size: 's', variant: 'success', ...args })}
+    ${DividerType({ type: 'dotted', size: '3xs', variant: 'success', ...args })}
+    ${DividerType({ type: 'dotted', size: '2xs', variant: 'primary', ...args })}
+    ${DividerType({ type: 'dotted', size: 'xs', variant: 'danger', ...args })}
+    ${DividerType({ type: 'dotted', size: 's', variant: 'secondary', ...args })}`;
+
+
+# Divider
+
+Dividers are used to visually separate or group elements.
+
+## Basic Divider
+ 
+<Canvas isColumn>
+    <Story name="Basic Usage">{Template.bind({})}</Story>
+</Canvas>    
+
+## Divider Sizes
+
+We have 5 different sizes of divider: `5xs`, `4xs`, `3xs`, `2xs`, `xs`. The default size is `xs`.
+
+<Canvas isColumn>
+    <Story name="Divider Sizes">{DividerSize.bind({})}</Story>
+</Canvas>   
+
+## Divider Variants
+
+Primary divider are used for main actions of the screens. It can has 4 different "kind"s. `primary`, `secondary`, `success` and `danger`.
+
+<Canvas isColumn>
+    <Story name="Divider Variant">{DividerVariants.bind({})}</Story>
+</Canvas>   
+
+## Divider Type
+
+Four different types are defined for displays. These are respectively; `solid`, `dotted`, `dashed` and `rounded`.
+<Canvas isColumn>
+    <Story name="Divider Type">{DividerTypes.bind({})}</Story>
+</Canvas>   
+
+## Divider Example
+
+<Canvas isColumn>
+    <Story name="Divider Example">{DividerExample.bind({})}</Story>
+</Canvas>   
+
+## Reference
+
+<ArgsTable of="fp-skeleton" />

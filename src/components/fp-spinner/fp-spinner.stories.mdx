@@ -1,0 +1,106 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta 
+    title="Components/Spinner" 
+    component="fp-spinner" 
+    argTypes={{
+        type: {
+            options: ['oval', 'bars', 'dots'],
+            control: {type: 'select'}
+        },
+        size: {
+            options: ['xs', 's', 'm', 'l', 'xl'],
+            control: {type: 'select'}
+        },
+        variant: {
+            options: ['primary', 'secondary', 'success', 'danger'],
+            default: 'primary',
+            control: { type: 'select' }
+        }
+    }}
+/>
+
+export const SpinnerTemplate = (args) => html`<fp-spinner
+type=${ifDefined(args.type)}
+size=${ifDefined(args.size)}
+variant=${ifDefined(args.variant)}
+style=${ifDefined(args.styles ? styleMap(args.styles) : undefined)}
+>${unsafeHTML(args.content)}</fp-spinner>`;
+
+
+export const SpinnerBasic = args => html`<fp-spinner></fp-spinner>`;
+
+export const SizesTemplate = (args) => html`
+<div style="display:flex; gap:20px;">
+    ${SpinnerTemplate({size: 'xs', ...args})}
+    ${SpinnerTemplate({size: 's', ...args})}
+    ${SpinnerTemplate({size: 'm', ...args})}
+    ${SpinnerTemplate({size: 'l', ...args})}
+    ${SpinnerTemplate({size: 'xl', ...args})}
+    ${SpinnerTemplate({size: '2xl', ...args})}
+    ${SpinnerTemplate({size: '3xl', ...args})}
+    ${SpinnerTemplate({size: '4xl', ...args})}
+    ${SpinnerTemplate({size: '5xl', ...args})}
+    ${SpinnerTemplate({size: '6xl', ...args})}
+    ${SpinnerTemplate({size: 'xxl', ...args})}
+    ${SpinnerTemplate({size: '2xxl', ...args})}
+    ${SpinnerTemplate({size: '3xxl', ...args})}
+    ${SpinnerTemplate({size: '4xxl', ...args})}
+</div>`;
+
+export const SpinnerTypes = (args) =>html`
+<div style="display:flex; gap:20px;">
+    ${SpinnerTemplate({type: 'oval', ...args})}
+    ${SpinnerTemplate({type: 'bars', variant: 'success', ...args})}
+    ${SpinnerTemplate({type: 'dots', variant: 'danger', ...args})}
+</div>`;
+
+export const SpinnerVariant = (args) =>html`
+<div style="display:flex; gap:20px;">
+    ${SpinnerTemplate({variant: 'primary', ...args})}
+    ${SpinnerTemplate({variant: 'secondary', ...args})}
+    ${SpinnerTemplate({variant: 'success', ...args})}
+    ${SpinnerTemplate({variant: 'danger', ...args})}
+</div>`;
+
+# Spinner
+
+Spinners allow the moment of waiting to be communicated to users.
+
+## Basic Spinner
+
+<Canvas isColumn>
+  <Story name="Basic Usage">{SpinnerBasic.bind({})}</Story>
+</Canvas>  
+
+## Primary Variants
+
+Primary spinners are used for main actions of the screens. It can has 4 different "kind"s. `primary`, `secondary`, `success` and `danger`.
+
+<Canvas isColumn>
+  <Story name="Spinner Variant">{SpinnerVariant.bind({})}</Story>
+</Canvas>  
+
+## Spinner Types
+
+We have 3 different types of spinners: `oval`, `bars`, `dots`. Default type is `oval`.
+
+<Canvas isColumn>
+  <Story name="Spinner Types">{SpinnerTypes.bind({})}</Story>
+</Canvas>  
+
+## Spinner Sizes
+
+We have 14 sizes of spinners: `xs`, `s`, `m`, `l`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `xxl`, `2xxl`, `3xxl`, `4xxl`. Default size is `5xl`.
+
+<Canvas isColumn>
+  <Story name="Spinner Sizes">{SizesTemplate.bind({})}</Story>
+</Canvas>  
+
+## Reference
+
+<ArgsTable of="fp-spinner" />

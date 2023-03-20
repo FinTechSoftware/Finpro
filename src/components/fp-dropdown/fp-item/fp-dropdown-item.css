@@ -1,0 +1,6 @@
+:host {
+    width: 100%;
+
+    --fp-button-display: block;
+    --fp-button-justify: start;
+}

@@ -1,0 +1,295 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import {
+  Meta,
+  Canvas,
+  ArgsTable,
+  Story,
+} from '@storybook/addon-docs';
+
+<Meta
+  title="Components/Input"
+  component="fp-input"
+  parameters={{
+    extraPaddingForChromatic: true,
+  }}
+  argTypes={{
+    label: {
+      control: 'text',
+    },
+    type: {
+      control: {
+        type: 'select',
+        options: ['number', 'text']
+      },
+    },
+    placeholder: {
+      control: 'text',
+    },
+    value: {
+      control: 'text',
+    },
+    required: {
+      control: 'boolean',
+    },
+    minlength: {
+      control: 'text',
+      type: 'number'
+    },
+    maxlength: {
+      control: 'text',
+      type: 'number'
+    },
+    min: {
+      control: 'text',
+      type: 'number'
+    },
+    max: {
+      control: 'text',
+      type: 'number'
+    },
+    step: {
+      control: 'text',
+      type: 'number'
+    },
+    icon: {
+      control: 'text',
+      type: 'string'
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'medium', 'large']
+      },
+      type: 'string'
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    labelFixed: {
+      control: 'boolean',
+    },
+    helpText: {
+      control: 'text'
+    }
+  }}
+/>
+
+export const FpButton = args => html`
+  <fp-button>Check</fp-button>`
+
+export const SingleInputTemplate = (args) => html`<fp-input
+    type='${ifDefined(args.type)}'
+    label='${ifDefined(args.label)}'
+    placeholder='${ifDefined(args.placeholder)}'
+    value='${ifDefined(args.value)}'
+    ?required='${args.required}'
+    ?disabled='${args.disabled}'
+    ?label-fixed='${args.labelFixed}'
+    invalid-text='${ifDefined(args.customInvalidText)}'
+    help-text='${ifDefined(args.helpText)}'
+    minlength='${ifDefined(args.minlength)}'
+    maxlength='${ifDefined(args.maxlength)}'
+    min='${ifDefined(args.min)}'
+    max='${ifDefined(args.max)}'
+    step='${ifDefined(args.step)}'
+    icon='${ifDefined(args.icon)}'
+    size='${ifDefined(args.size)}'
+  ></fp-input>`
+
+export const SizeVariantsTemplate = args => html`
+${SingleInputTemplate({ size: 'large', ...args })}
+${SingleInputTemplate({ size: 'medium', ...args })}
+${SingleInputTemplate({ size: 'small', ...args })}
+`
+
+# Input
+
+The input component is designed to allow users to enter text input.
+
+## Basic Usage
+
+At present, the input component has support for `text`, `number`, and `password` types, with `text` being the default type.
+
+<Canvas>
+  <Story name="Text Input" args={{ placeholder: 'Enter Your Name' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Number Input" args={{ type: 'number', placeholder: 'Enter Your Age' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Password Input" args={{ type: 'password', placeholder: 'Enter Your Password' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Input Labels
+
+The input component has the option to include a `label`. 
+If a label is provided, it will be displayed as a floating label by default. 
+However, if you prefer to always display the label at the top of the input, you can use the `label-fixed` attribute.
+
+<Canvas isColumn>
+  <Story name="Input With Label"
+         args={{ label: 'User Name', placeholder: 'Enter Your Name' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Input With Fixed Label" args={{
+    label: 'User Name',
+    labelFixed: true,
+    placeholder: 'Enter Your Name'
+  }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Input Without Label" args={{ placeholder: 'Enter Your Name' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Input with value" args={{ label: 'Your name', placeholder: 'Name Surname', value: 'Random User' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+If a label provided for the input component is too long to fit within the input's width, it will be truncated with an ellipsis character.
+
+<Canvas isColumn>
+  <Story name="Input With Long Label" args={{ label: "Very very long label that doesn't fit select component width" }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Input With Long Label with Icon" args={{ label: "Very very long label that doesn't fit select component width", icon: 'profile' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Input With Fixed Long Label" args={{ label: "Very very long label that doesn't fit select component width", placeholder: "Username", labelFixed: true }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Input Help Text
+
+To provide additional information to the user, you can use the `help-text` attribute in the input component.
+
+<Canvas>
+  <Story name="Input Help Text"
+         args={{ type: 'text', placeholder: 'Enter Name', helpText: 'Your username should include only letters.' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Input With Icon
+
+The input component allows for an icon to be included. This icon is displayed using the `fp-icon` component internally, and its color is synchronized with the input's state.
+
+<Canvas>
+  <Story name="Input With Icon"
+         args={{ type: 'text', placeholder: 'Enter Name', required: true, icon: 'calendar' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Password Input With Icon"
+         args={{ type: 'password', placeholder: 'Enter Password', required: true, icon: 'lock' }}>
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Input Validation
+
+The input component supports the use of native HTML validation rules, such as `required`, `minlength`, `maxlength`, `min`, and `max`. Additional validation rules will be added in the future.
+
+Validation of the input will occur once the user has entered a value and then moves out of the input. If there is a validation issue, the input will be highlighted in an error state. Once in the error state, any further changes made to the input will immediately trigger an update to the validation state.
+
+<Canvas>
+  <Story name="Validation with Text Input"
+         args={{ type: 'text', label: 'User Name', minlength: 5, maxlength: 20, required: true }}
+  >
+    {SingleInputTemplate.bind({})}
+  </Story>
+    <Story name="Validation with Number Input"
+         args={{ type: 'number', label: 'Age', min: 18, required: true }}
+  >
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+By default, the input component uses the default browser error messages for validation errors. However, if you wish to customize the error message, you can do so by setting the `invalid-text` attribute.
+
+<Canvas>
+  <Story name="Custom Error Message"
+         args={{ type: 'text', label: 'User Name', required: true, customInvalidText: 'This field is mandatory' }}
+  >
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Input Sizes
+
+The input component offers three different size options: `large`, `medium`, and `small`. The default size is `medium`, but if you would like to display a larger or smaller input, you can set the `size` attribute.
+
+<Canvas>
+  <Story name="Input sizes without value"
+         args={{ type: 'text', label: 'User Name', icon: 'profile' }}
+  >
+    {SizeVariantsTemplate.bind({})}
+  </Story>
+  <Story name="Input sizes with value"
+         args={{ type: 'text', label: 'User Name', value: 'fintechuser' }}
+  >
+    {SizeVariantsTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled Input
+
+To disable the input component, simply add the `disabled` attribute.
+
+<Canvas isColumn>
+  <Story name="Disabled Input with label"
+         args={{ type: 'text', label: 'User Name', disabled: true }}
+  >
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Disabled Input with placeholder"
+         args={{ type: 'text', label: 'User Name', labelFixed: true, placeholder: 'namesurname', disabled: true }}
+  >
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Disabled Input with value"
+         args={{ type: 'text', label: 'User Name', value: 'fintechuser', disabled: true }}
+  >
+    {SingleInputTemplate.bind({})}
+  </Story>
+  <Story name="Disabled Input with icon"
+         args={{ type: 'text', label: 'User Name', icon: 'profile', disabled: true }}
+  >
+    {SingleInputTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Using within a form
+
+Input component uses [ElementInternals](https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals) to associate with it's parent form automatically. When you use `fp-input` within a form with a `name` attribute, input's value will be automatically set parent form's FormData. Check the example below:
+
+```html
+<form novalidate>
+  <fp-input name="name" label="Your Name"></fp-input>
+  <fp-input name="age" type="number" required min="18" label="Age"></fp-input>
+
+  <fp-button type="submit">Submit</fp-button>
+</form>
+
+<script>
+  document.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+  });
+</script>
+```
+
+When you execute this example and send the form, the console will display the key/value pairs of the inputs.
+
+<fp-alert icon>If a user presses the Enter key while focused on an input element within a form, it will trigger the form submission. This behavior imitates the default behavior of the input element.</fp-alert>
+
+## Reference
+
+<ArgsTable of="fp-input" />

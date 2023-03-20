@@ -1,0 +1,100 @@
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addon-docs';
+
+<Meta 
+    title="Components/Skeleton"
+    component="fp-skeleton"
+    argTypes={{
+        radius: {
+            options: ['xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'xxl' | '2xxl' | '3xxl' | '4xxl'],
+            control: {type: 'select'}
+        },
+         variant: {
+            options: ['primary', 'secondary', 'success', 'danger'],
+            default: 'primary',
+            control: { type: 'select' }
+        },
+        animation: {
+            control: 'boolean',
+            type: 'boolean'
+        },
+        circle: {
+            control: 'boolean',
+            type: 'boolean'
+        },
+        width: {
+            control: 'text',
+            type: 'text'
+        },
+        height: {
+            control: 'text',
+            type: 'text'
+        }
+    }}
+/>
+
+export const SkeletonType = (args) => html`<fp-skeleton
+    radius=${ifDefined(args.radius)}
+    variant=${ifDefined(args.variant)}
+    animation=${ifDefined(args.animation)}
+    circle=${ifDefined(args.circle)}
+    width=${ifDefined(args.width)}
+    height=${ifDefined(args.height)}
+></fp-skeleton>`;
+
+export const Template = (args) => html`
+<fp-skeleton circle animation></fp-skeleton>
+<fp-skeleton width="25%" radius="2xl" animation></fp-skeleton>
+<fp-skeleton width="50%" radius="2xl" animation></fp-skeleton>
+<fp-skeleton width="100%" radius="2xl" animation></fp-skeleton>`;
+
+export const SkeletonSize = (args) => html`
+    ${SkeletonType({radius: 'xs', width:'10%', height:'10px', ...args})}
+    ${SkeletonType({radius: 's', width:'20%', height:'20px', ...args})}
+    ${SkeletonType({radius: 'm', width:'30%', height:'30px', ...args})}
+    ${SkeletonType({radius: 'l', width:'40%', height:'40px', ...args})}
+    ${SkeletonType({radius: 'xl', width:'50%', height:'50px', ...args})}
+    ${SkeletonType({radius: '2xl', width:'75%', height:'60px', ...args})}`;
+
+export const SkeletonVariants = (args) => html`
+    ${SkeletonType({radius: 'xs', width:'15%', variant: 'primary', animation:'true', ...args})}
+    ${SkeletonType({radius: 'xs', width:'25%', variant: 'success', animation:'true', ...args})}
+    ${SkeletonType({radius: 'xs', width:'50%', variant: 'danger', animation:'true', ...args})}
+    ${SkeletonType({radius: 'xs', width:'75%', variant: 'secondary', animation:'true', ...args})}`;    
+
+# Skeleton
+
+A skeleton indicator is a component used as a preview that components are loaded for a long process or a process that can take significant or unknown time.
+
+<fp-alert variant="warning" icon>The inline styles in the examples are for **demo purposes** only. Use regular CSS classes or tag selectors to set styles.</fp-alert>
+
+## Basic Skeleton
+
+By default, `width` is 100, `height` is 10. So the width and height must be a number between 0-100. `radius` values can take a value between xs and 4xxl, by default they take the value `xs`. The component to be shaded is obtained by entering the desired height and width. The `animation` tag is used to activate the animation of the skeleton.
+
+<Canvas isColumn>
+    <Story name="Basic Usage">{Template.bind({})}</Story>
+</Canvas>    
+
+## Skeleton Sizes
+
+We have 14 different sizes of skeleton radius: `xs`, `s`, `m`, `l`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `xxl`, `2xxl`, `3xxl`, `4xxl`. The default size is `xs`.
+
+<Canvas isColumn>
+    <Story name="Skeleton Sizes">{SkeletonSize.bind({})}</Story>
+</Canvas> 
+
+## Primary Variants
+
+Primary skeleton are used for main actions of the screens. It can has 4 different "kind"s. `primary`, `secondary`, `success` and `danger`.
+
+<Canvas isColumn>
+    <Story name="Skeleton">{SkeletonVariants.bind({})}</Story>
+</Canvas>   
+
+## Reference
+
+<ArgsTable of="fp-skeleton" />

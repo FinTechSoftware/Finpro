@@ -1,0 +1,73 @@
+:host {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+:host * {
+  outline:none;
+}
+
+label {
+  display: flex;
+  gap: var(--fp-size-2xs);
+  color: var(--fp-color-secondary);
+  font: var(--fp-font-title-3);
+  cursor: pointer;
+  user-select: none;
+}
+
+.label {
+  word-break: break-all;
+}
+
+input {
+  appearance: none;
+  position: absolute;
+}
+
+.check-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--fp-size-l);
+  height: var(--fp-size-l);
+  min-width: var(--fp-size-l);
+  min-height: var(--fp-size-l);
+  max-width: var(--fp-size-l);
+  max-height: var(--fp-size-l);
+  border: 1px solid var(--fp-color-border);
+  border-radius: var(--fp-border-radius-xs);
+  color: var(--fp-color-content-primary-contrast);
+  font-size: var(--fp-font-size-2xs);
+  line-height: 100%;
+  background-color: var(--fp-color-primary-background);
+}
+
+:host([checked]) .label,
+:host(:hover) .label {
+  color: var(--fp-color-primary);
+}
+
+:host(:is([checked], [indeterminate])) .check-mark {
+  background-color: var(--fp-color-primary);
+  border: none;
+}
+
+:host([disabled]) {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+:host([disabled]) .check-mark,
+:host([disabled]) .label {
+  color: var(--fp-color-content-passive);
+}
+
+:host([disabled]) .check-mark {
+  background-color: var(--fp-color-secondary-background);
+}
+
+:host(:not([disabled])) input:focus-visible + .check-mark {
+  box-shadow: 0 0 0 1px white, 0 0 0 3px var(--fp-color-primary);
+}
