@@ -35,9 +35,9 @@ ${BadgeTemplate({ content:'Winner', styles: { '--fp-badge-bg-color' : 'var(--fp-
 
 export const WithIconTemplate = (args) => html`
 ${BadgeTemplate({ content:'In Progress', icon: 'waiting', styles: { '--fp-badge-bg-color' : 'var(--fp-color-accent-primary-background)', '--fp-badge-color': 'var(--fp-color-primary)' },...args})}
-${BadgeTemplate({ content:'Approved', icon: 'check_fill', styles: { '--fp-badge-bg-color' : 'var(--fp-color-success-background)', '--fp-badge-color': 'var(--fp-color-success)' },...args})}
+${BadgeTemplate({ content:'Approved', icon: 'check-circle', styles: { '--fp-badge-bg-color' : 'var(--fp-color-success-background)', '--fp-badge-color': 'var(--fp-color-success)' },...args})}
 ${BadgeTemplate({ content:'Warning', icon: 'warning', styles: { '--fp-badge-bg-color' : 'var(--fp-color-warning-background)', '--fp-badge-color': 'var(--fp-color-warning)' },...args})}
-${BadgeTemplate({ content:'Denied', icon: 'close_fill', styles: { '--fp-badge-bg-color' : 'var(--fp-color-danger-background)', '--fp-badge-color': 'var(--fp-color-danger)' },...args})}
+${BadgeTemplate({ content:'Denied', icon: 'x-circle', styles: { '--fp-badge-bg-color' : 'var(--fp-color-danger-background)', '--fp-badge-color': 'var(--fp-color-danger)' },...args})}
 ${BadgeTemplate({ content:'Offer', icon: 'my_offers', styles: { '--fp-badge-bg-color' : 'var(--fp-color-alternative-background)', '--fp-badge-color': 'var(--fp-color-alternative)' },...args})}
 ${BadgeTemplate({ content:'Winner', icon: 'award', styles: { '--fp-badge-bg-color' : 'var(--fp-color-featured-background)', '--fp-badge-color': 'var(--fp-color-featured)' },...args})}
 `;

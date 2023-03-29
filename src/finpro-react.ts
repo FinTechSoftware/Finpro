@@ -4,12 +4,12 @@
 import { createComponent } from '@lit-labs/react';
 import type FpAlertType from "./components/fp-alert/fp-alert";
 import type FpAnchorType from "./components/fp-anchor/fp-anchor";
-import type FpBadgeType from "./components/fp-badge/fp-badge";
 import type FpBreadcrumbsType from "./components/fp-breadcrumb/fp-breadcrumbs";
+import type FpBadgeType from "./components/fp-badge/fp-badge";
 import type FpButtonType from "./components/fp-button/fp-button";
+import type FpCardType from "./components/fp-card/fp-card";
 import type FpCheckboxGroupType from "./components/fp-checkbox-group/fp-checkbox-group";
 import type FpDialogType from "./components/fp-dialog/fp-dialog";
-import type FpCardType from "./components/fp-card/fp-card";
 import type FpDividerType from "./components/fp-divider/fp-divider";
 import type FpDrawerType from "./components/fp-drawer/fp-drawer";
 import type FpDropdownType from "./components/fp-dropdown/fp-dropdown";
@@ -26,12 +26,12 @@ import type FpSkeletonType from "./components/fp-skeleton/fp-skeleton";
 import type FpSpinnerType from "./components/fp-spinner/fp-spinner";
 import type FpSwitchType from "./components/fp-switch/fp-switch";
 import type FpTabGroupType from "./components/fp-tab-group/fp-tab-group";
-import type FpTextareaType from "./components/fp-text-area/fp-text-area";
 import type FpTooltipType from "./components/fp-tooltip/fp-tooltip";
-import type FpCheckboxType from "./components/fp-checkbox-group/fp-checkbox/fp-checkbox";
+import type FpTextareaType from "./components/fp-text-area/fp-text-area";
 import type FpDropdownGroupType from "./components/fp-dropdown/fp-group/fp-dropdown-group";
-import type FpDropdownItemType from "./components/fp-dropdown/fp-item/fp-dropdown-item";
+import type FpCheckboxType from "./components/fp-checkbox-group/fp-checkbox/fp-checkbox";
 import type FpMenuItemType from "./components/fp-menu/fp-menu-item/fp-menu-item";
+import type FpDropdownItemType from "./components/fp-dropdown/fp-item/fp-dropdown-item";
 import type FpMenuLabelType from "./components/fp-menu/fp-menu-label/fp-menu-label";
 import type FpRadioType from "./components/fp-radio-group/fp-radio/fp-radio";
 import type FpSelectOptionType from "./components/fp-select/fp-select-option/fp-select-option";
@@ -68,12 +68,12 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
    
 
 
-  export const FpBadge = React.lazy(() =>
-    customElements.whenDefined('fp-badge').then(elem => ({
-        default: createComponent<FpBadgeType>(
+  export const FpBreadcrumbs = React.lazy(() =>
+    customElements.whenDefined('fp-breadcrumbs').then(elem => ({
+        default: createComponent<FpBreadcrumbsType>(
           {
             react: React,
-            tagName: 'fp-badge',
+            tagName: 'fp-breadcrumbs',
             elementClass: elem,
             events:{}
           }
@@ -83,12 +83,12 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
    
 
 
-  export const FpBreadcrumbs = React.lazy(() =>
-    customElements.whenDefined('fp-breadcrumbs').then(elem => ({
-        default: createComponent<FpBreadcrumbsType>(
+  export const FpBadge = React.lazy(() =>
+    customElements.whenDefined('fp-badge').then(elem => ({
+        default: createComponent<FpBadgeType>(
           {
             react: React,
-            tagName: 'fp-breadcrumbs',
+            tagName: 'fp-badge',
             elementClass: elem,
             events:{}
           }
@@ -106,6 +106,21 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
             tagName: 'fp-button',
             elementClass: elem,
             events:{"onClick":"fp-click"}
+          }
+      )
+      })
+ ));
+   
+
+
+  export const FpCard = React.lazy(() =>
+    customElements.whenDefined('fp-card').then(elem => ({
+        default: createComponent<FpCardType>(
+          {
+            react: React,
+            tagName: 'fp-card',
+            elementClass: elem,
+            events:{}
           }
       )
       })
@@ -136,21 +151,6 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
             tagName: 'fp-dialog',
             elementClass: elem,
             events:{"onOpen":"fp-dialog-open","onClose":"fp-dialog-close"}
-          }
-      )
-      })
- ));
-   
-
-
-  export const FpCard = React.lazy(() =>
-    customElements.whenDefined('fp-card').then(elem => ({
-        default: createComponent<FpCardType>(
-          {
-            react: React,
-            tagName: 'fp-card',
-            elementClass: elem,
-            events:{}
           }
       )
       })
@@ -398,21 +398,6 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
    
 
 
-  export const FpTextarea = React.lazy(() =>
-    customElements.whenDefined('fp-textarea').then(elem => ({
-        default: createComponent<FpTextareaType>(
-          {
-            react: React,
-            tagName: 'fp-textarea',
-            elementClass: elem,
-            events:{"onInput":"fp-input","onChange":"fp-change","onInvalid":"fp-invalid"}
-          }
-      )
-      })
- ));
-   
-
-
   export const FpTooltip = React.lazy(() =>
     customElements.whenDefined('fp-tooltip').then(elem => ({
         default: createComponent<FpTooltipType>(
@@ -428,14 +413,14 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
    
 
 
-  export const FpCheckbox = React.lazy(() =>
-    customElements.whenDefined('fp-checkbox').then(elem => ({
-        default: createComponent<FpCheckboxType>(
+  export const FpTextarea = React.lazy(() =>
+    customElements.whenDefined('fp-textarea').then(elem => ({
+        default: createComponent<FpTextareaType>(
           {
             react: React,
-            tagName: 'fp-checkbox',
+            tagName: 'fp-textarea',
             elementClass: elem,
-            events:{"onChange":"fp-checkbox-change","onFocus":"fp-focus","onBlur":"fp-blur"}
+            events:{"onInput":"fp-input","onChange":"fp-change","onInvalid":"fp-invalid"}
           }
       )
       })
@@ -458,14 +443,14 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
    
 
 
-  export const FpDropdownItem = React.lazy(() =>
-    customElements.whenDefined('fp-dropdown-item').then(elem => ({
-        default: createComponent<FpDropdownItemType>(
+  export const FpCheckbox = React.lazy(() =>
+    customElements.whenDefined('fp-checkbox').then(elem => ({
+        default: createComponent<FpCheckboxType>(
           {
             react: React,
-            tagName: 'fp-dropdown-item',
+            tagName: 'fp-checkbox',
             elementClass: elem,
-            events:{"onClick":"fp-dropdown-item-click"}
+            events:{"onChange":"fp-checkbox-change","onFocus":"fp-focus","onBlur":"fp-blur"}
           }
       )
       })
@@ -481,6 +466,21 @@ import type FpTabPanelType from "./components/fp-tab-group/fp-tab-panel/fp-tab-p
             tagName: 'fp-menu-item',
             elementClass: elem,
             events:{}
+          }
+      )
+      })
+ ));
+   
+
+
+  export const FpDropdownItem = React.lazy(() =>
+    customElements.whenDefined('fp-dropdown-item').then(elem => ({
+        default: createComponent<FpDropdownItemType>(
+          {
+            react: React,
+            tagName: 'fp-dropdown-item',
+            elementClass: elem,
+            events:{"onClick":"fp-dropdown-item-click"}
           }
       )
       })

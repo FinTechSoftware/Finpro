@@ -88,9 +88,9 @@ export default class FpAlert extends FinproElement {
   private _predefinedIcons() {
     switch (this.variant) {
       case 'success':
-        return 'check_fill';
+        return 'check-circle';
       case 'danger':
-        return 'close_fill';
+        return 'x-circle';
       default:
         return this.variant;
     }
@@ -109,7 +109,7 @@ export default class FpAlert extends FinproElement {
         element.parentNode?.removeChild(element);
         return;
       }
-      element.setAttribute('variant','tertiary' as ButtonVariant);
+      element.setAttribute('variant', 'tertiary' as ButtonVariant);
       element.setAttribute('kind', 'neutral' as ButtonKind);
       element.setAttribute('size', 'medium' as ButtonSize);
       element.removeAttribute('icon');
@@ -120,27 +120,20 @@ export default class FpAlert extends FinproElement {
     const caption =
       this.caption || this._hasAlertCaptionSlot
         ? html`<span class="caption">
-            <slot name="caption"> ${this.caption} </slot>
-          </span>`
+  <slot name="caption"> ${this.caption} </slot>
+</span>`
         : null;
     const icon = this._getIcon()
       ? html`<fp-icon class="icon" name=${ifDefined(this._getIcon())}></fp-icon>`
       : null;
 
     const closable = this.closable
-      ? html`<fp-button
-          class="close"
-          label="close"
-          variant="tertiary"
-          kind="neutral"
-          icon="close"
-          variant="secondary"
-          @click=${this._closeHandler}
-        ></fp-button>`
+      ? html`<fp-button class="close" label="close" variant="tertiary" kind="neutral" icon="close" variant="secondary"
+  @click=${this._closeHandler}></fp-button>`
       : null;
     const description = html`<span class="description">
-      <slot> ${this.description} </slot>
-    </span>`;
+  <slot> ${this.description} </slot>
+</span>`;
 
     return html`
       <div class="alert">
