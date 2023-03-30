@@ -196,7 +196,7 @@ export default class FpSelect extends FinproElement {
         size="small"
         variant="tertiary"
         kind="neutral"
-        icon="close"
+        icon="x"
         @click=${this._onClickRemove}></fp-button>`;
     const placeholder = this._showPlaceHolder
       ? html`<span class="placeholder">${this.placeholder}</span>`
@@ -212,12 +212,12 @@ export default class FpSelect extends FinproElement {
         ${this.multiple ? removeButton : null}
         <fp-icon
           class="dropdown-icon open"
-          name="arrow_up"
+          name="chevron-up"
         ></fp-icon>
 
         <fp-icon
           class="dropdown-icon closed"
-          name="arrow_down"
+          name="chevron-down"
         ></fp-icon>
       </div>
     </div>`;
@@ -316,7 +316,7 @@ export default class FpSelect extends FinproElement {
     if (!this.multiple) return;
 
     let visibleItems = 0;
-    for(const value of this._selectedOptionsItems) {
+    for (const value of this._selectedOptionsItems) {
       if (value.offsetLeft < this._selectedOptionsContainer.offsetWidth) {
         visibleItems++;
       } else {

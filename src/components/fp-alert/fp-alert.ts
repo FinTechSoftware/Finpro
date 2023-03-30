@@ -128,7 +128,7 @@ export default class FpAlert extends FinproElement {
       : null;
 
     const closable = this.closable
-      ? html`<fp-button class="close" label="close" variant="tertiary" kind="neutral" icon="close" variant="secondary"
+      ? html`<fp-button class="close" label="close" variant="tertiary" kind="neutral" icon="x" variant="secondary"
   @click=${this._closeHandler}></fp-button>`
       : null;
     const description = html`<span class="description">

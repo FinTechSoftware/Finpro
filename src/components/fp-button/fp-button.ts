@@ -125,8 +125,8 @@ export default class FpButton extends FinproElement {
   }
 
   private caretTemplate(): TemplateResult {
-    return html` <fp-icon class="open" name="arrow_up"></fp-icon>
-      <fp-icon class="close" name="arrow_down"></fp-icon>`;
+    return html` <fp-icon class="open" name="chevron-up"></fp-icon>
+      <fp-icon class="close" name="chevron-down"></fp-icon>`;
   }
 
   private _handleClick() {

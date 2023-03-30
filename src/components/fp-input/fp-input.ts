@@ -234,14 +234,14 @@ export default class FpInput extends FormControlMixin(LitElement) {
           kind="neutral"
           variant="tertiary"
           class="${classMap({
-            'reveal-button': true,
-            'password-visible': this.passwordVisible,
-          })}"
+        'reveal-button': true,
+        'password-visible': this.passwordVisible,
+      })}"
           aria-label="Toggle password reveal"
           @fp-click="${this.textVisiblityToggle}"
         >
-          <fp-icon class="reveal-icon" slot="icon" name="eye_on"></fp-icon>
-          <fp-icon class="reveal-icon" slot="icon" name="eye_off"></fp-icon>
+          <fp-icon class="reveal-icon" slot="icon" name="eye"></fp-icon>
+          <fp-icon class="reveal-icon" slot="icon" name="eye-off"></fp-icon>
         </fp-button>`
       : '';
 

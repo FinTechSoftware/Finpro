@@ -121,7 +121,7 @@ export default class FpDrawer extends FinproElement {
           ${external_button}
           <fp-button
             @click="${this.closeDrawer}"
-            icon="close"
+            icon="x"
             size="small"
             variant="tertiary"
             kind="neutral"

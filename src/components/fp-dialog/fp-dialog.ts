@@ -130,7 +130,7 @@ export default class FpDialog extends FinproElement {
         ${title}
         <fp-button
           @click="${this.closeDialog}"
-          icon="close"
+          icon="x"
           variant="tertiary"
           kind="neutral"
         ></fp-button>

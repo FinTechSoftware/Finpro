@@ -1,252 +1,251 @@
 :host {
-    display: inline-block;
-    width: 200px;
-    position: relative;
-  }
-  
-  .wrapper {
-    --border-color: var(--fp-color-border);
-    --icon-color: var(--fp-color-content-tertiary);
-    --text-color: var(--fp-color-content-primary);
-    --height: var(--fp-size-5xl);
-    --input-font: var(--fp-font-body-text-2);
-    --line-height: var(--fp-font-body-text-2-line-height);
-    --icon-size: var(--line-height);
-    --padding-vertical: calc((var(--height) - var(--line-height)) / 2);
-    --padding-horizontal: var(--fp-size-s);
-    --autofill-bg-color: var(--fp-color-accent-primary-background);
-  
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    gap: var(--fp-size-3xs);
-  }
-  
-  .wrapper:focus-within {
-    --border-color: var(--fp-color-primary);
-    --icon-color: var(--fp-color-primary);
-  }
-  
-  .wrapper.dirty.invalid {
-    --border-color: var(--fp-color-danger);
-    --icon-color: var(--fp-color-danger);
-  }
-  
-  :host([size='large']) .wrapper {
-    --height: var(--fp-size-6xl);
-    --padding-vertical: var(--fp-size-s);
-    --padding-horizontal: var(--fp-size-l);
-  }
-  
-  :host([size='small']) .wrapper {
-    --height: var(--fp-size-3xl);
-    --input-font: var(--fp-font-body-text-3);
-    --padding-vertical: var(--fp-size-4xs);
-    --icon-size: var(--fp-font-body-text-3-line-height);
-  }
-  
-  .wrapper:has(input:autofill) {
-    background-color: var(--autofill-bg-color);
-  }
-  
-  .wrapper:has(input:-webkit-autofill) {
-    background-color: var(--autofill-bg-color);
-  }
-  
-  label {
-    position: absolute;
-    top: var(--padding-vertical);
-    left: var(--padding-horizontal);
-    right: var(--padding-horizontal);
-    max-width: max-content;
-    transition: all ease-in 0.2s;
-    pointer-events: none;
-    font: var(--input-font);
-    color: var(--fp-color-content-tertiary);
-    padding: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .input-wrapper {
-    --border-size: 1px;
-  
-    display: flex;
-    box-sizing: border-box;
-    gap: var(--padding-vertical);
-    height: var(--height);
-    border: solid var(--border-size) var(--border-color);
-    padding: 0 calc(var(--padding-horizontal) - var(--border-size));
-    border-radius: 4px;
-  }
-  
-  input {
-    width: 100%;
-    align-self: stretch;
-    outline: 0;
-    border: 0;
-    padding: 0;
-    font: var(--input-font);
-    color: var(--text-color);
-    -webkit-text-fill-color: var(--text-color);
-    background-color: transparent;
-  }
-  
-  input:disabled {
-    cursor: not-allowed;
-  }
-  
-  input:autofill {
-    background-color: var(--autofill-bg-color);
-  
-    /**
+  display: inline-block;
+  width: 200px;
+  position: relative;
+}
+
+.wrapper {
+  --border-color: var(--fp-color-border);
+  --icon-color: var(--fp-color-content-tertiary);
+  --text-color: var(--fp-color-content-primary);
+  --height: var(--fp-size-5xl);
+  --input-font: var(--fp-font-body-text-2);
+  --line-height: var(--fp-font-body-text-2-line-height);
+  --icon-size: var(--line-height);
+  --padding-vertical: calc((var(--height) - var(--line-height)) / 2);
+  --padding-horizontal: var(--fp-size-s);
+  --autofill-bg-color: var(--fp-color-accent-primary-background);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: var(--fp-size-3xs);
+}
+
+.wrapper:focus-within {
+  --border-color: var(--fp-color-primary);
+  --icon-color: var(--fp-color-primary);
+}
+
+.wrapper.dirty.invalid {
+  --border-color: var(--fp-color-danger);
+  --icon-color: var(--fp-color-danger);
+}
+
+:host([size='large']) .wrapper {
+  --height: var(--fp-size-6xl);
+  --padding-vertical: var(--fp-size-s);
+  --padding-horizontal: var(--fp-size-l);
+}
+
+:host([size='small']) .wrapper {
+  --height: var(--fp-size-3xl);
+  --input-font: var(--fp-font-body-text-3);
+  --padding-vertical: var(--fp-size-4xs);
+  --icon-size: var(--fp-font-body-text-3-line-height);
+}
+
+.wrapper:has(input:autofill) {
+  background-color: var(--autofill-bg-color);
+}
+
+.wrapper:has(input:-webkit-autofill) {
+  background-color: var(--autofill-bg-color);
+}
+
+label {
+  position: absolute;
+  top: var(--padding-vertical);
+  left: var(--padding-horizontal);
+  right: var(--padding-horizontal);
+  max-width: max-content;
+  transition: all ease-in 0.2s;
+  pointer-events: none;
+  font: var(--input-font);
+  color: var(--fp-color-content-tertiary);
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.input-wrapper {
+  --border-size: 1px;
+
+  display: flex;
+  box-sizing: border-box;
+  gap: var(--padding-vertical);
+  height: var(--height);
+  border: solid var(--border-size) var(--border-color);
+  padding: 0 calc(var(--padding-horizontal) - var(--border-size));
+  border-radius: 4px;
+}
+
+input {
+  width: 100%;
+  align-self: stretch;
+  outline: 0;
+  border: 0;
+  padding: 0;
+  font: var(--input-font);
+  color: var(--text-color);
+  -webkit-text-fill-color: var(--text-color);
+  background-color: transparent;
+}
+
+input:disabled {
+  cursor: not-allowed;
+}
+
+input:autofill {
+  background-color: var(--autofill-bg-color);
+
+  /**
      * Some browsers doesn't allow setting background-color
      * https://developer.mozilla.org/en-US/docs/Web/CSS/:autofill
      */
-    box-shadow: 0 0 0 40rem var(--autofill-bg-color) inset;
-  }
-  
-  input:-webkit-autofill {
-    background-color: var(--autofill-bg-color);
-  
-    /**
+  box-shadow: 0 0 0 40rem var(--autofill-bg-color) inset;
+}
+
+input:-webkit-autofill {
+  background-color: var(--autofill-bg-color);
+
+  /**
      * Some browsers doesn't allow setting background-color
      * https://developer.mozilla.org/en-US/docs/Web/CSS/:autofill
      */
-    box-shadow: 0 0 0 40rem var(--autofill-bg-color) inset;
-  }
-  
-  .icon {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-basis: var(--icon-size);
-    align-self: center;
-    height: var(--icon-size);
-  }
-  
-  fp-icon:not(.reveal-icon) {
-    font-size: var(--icon-size);
-    color: var(--icon-color);
-    height: var(--icon-size);
-  }
-  
-  .reveal-button fp-icon {
-    display: none;
-  }
-  
-  fp-icon[name='eye_on'] {
-    display: inline-block;
-  }
-  
-  .password-visible fp-icon[name='eye_on'] {
-    display: none;
-  }
-  
-  .password-visible fp-icon[name='eye_off'] {
-    display: inline-block;
-  }
-  
-  .wrapper:not(.has-icon) .icon {
-    display: none;
-  }
-  
-  .hint {
-    display: none;
-    font: var(--fp-font-body-text-3);
-    padding: 0 var(--padding-horizontal);
-  }
-  
-  .hint p {
-    padding: 0;
-    margin: 0;
-  }
-  
-  ::placeholder {
-    color: var(--fp-color-content-tertiary);
-    -webkit-text-fill-color: var(--fp-color-content-tertiary);
-  }
-  
-  :host([label]) ::placeholder {
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    transition: color ease-out 0.4s;
-  }
-  
-  :host([label-fixed]) ::placeholder,
-  :host .wrapper:focus-within ::placeholder {
-    color: var(--fp-color-content-tertiary);
-    -webkit-text-fill-color: var(--fp-color-content-tertiary);
-  }
-  
-  :host([disabled]) .input-wrapper {
-    cursor: not-allowed;
-    background-color: var(--fp-color-secondary-background);
-  
-    --text-color: var(--fp-color-content-passive);
-  }
-  
-  :where(.wrapper:focus-within, .wrapper.has-value) label {
-    --label-padding: var(--fp-size-3xs);
-  
-    top: 0;
-    left: calc(var(--padding-horizontal) - var(--label-padding));
-    transform: translateY(-50%);
-    font: var(--fp-font-caption);
-    color: var(--fp-color-content-secondary);
-    padding: 0 var(--label-padding);
-    background-color: var(--fp-color-primary-background);
-    pointer-events: initial;
-  }
-  
-  :where(.has-icon:not(:focus-within), .has-icon:not(.has-value)) label {
-    right: calc(var(--padding-horizontal) + var(--icon-size) + var(--padding-vertical));
-  }
-  
-  :host([label-fixed]) label {
-    position: static;
-    transition: none;
-    transform: none;
-    pointer-events: initial;
-    font: var(--fp-font-caption);
-    color: var(--fp-color-content-secondary);
-    padding: 0;
-  }
-  
-  .error-icon,
-  .invalid-text {
-    display: none;
-  }
-  
-  .dirty.invalid label,
-  .invalid-text,
-  .error-icon {
-    color: var(--fp-color-danger);
-  }
-  
-  .help-text {
-    color: var(--fp-color-content-secondary);
-  }
-  
-  :host([help-text]) .hint,
-  .dirty.invalid .hint {
-    display: block;
-  }
-  
-  .dirty.invalid .invalid-text {
-    display: block;
-  }
-  
-  .dirty.invalid .help-text {
-    display: none;
-  }
-  
-  .dirty.invalid .error-icon {
-    display: inline-block;
-  }
-  
-  .dirty.invalid .custom-icon ~ .error-icon {
-    display: none;
-  }
-  
+  box-shadow: 0 0 0 40rem var(--autofill-bg-color) inset;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-basis: var(--icon-size);
+  align-self: center;
+  height: var(--icon-size);
+}
+
+fp-icon:not(.reveal-icon) {
+  font-size: var(--icon-size);
+  color: var(--icon-color);
+  height: var(--icon-size);
+}
+
+.reveal-button fp-icon {
+  display: none;
+}
+
+fp-icon[name='eye'] {
+  display: inline-block;
+}
+
+.password-visible fp-icon[name='eye'] {
+  display: none;
+}
+
+.password-visible fp-icon[name='eye-off'] {
+  display: inline-block;
+}
+
+.wrapper:not(.has-icon) .icon {
+  display: none;
+}
+
+.hint {
+  display: none;
+  font: var(--fp-font-body-text-3);
+  padding: 0 var(--padding-horizontal);
+}
+
+.hint p {
+  padding: 0;
+  margin: 0;
+}
+
+::placeholder {
+  color: var(--fp-color-content-tertiary);
+  -webkit-text-fill-color: var(--fp-color-content-tertiary);
+}
+
+:host([label]) ::placeholder {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transition: color ease-out 0.4s;
+}
+
+:host([label-fixed]) ::placeholder,
+:host .wrapper:focus-within ::placeholder {
+  color: var(--fp-color-content-tertiary);
+  -webkit-text-fill-color: var(--fp-color-content-tertiary);
+}
+
+:host([disabled]) .input-wrapper {
+  cursor: not-allowed;
+  background-color: var(--fp-color-secondary-background);
+
+  --text-color: var(--fp-color-content-passive);
+}
+
+:where(.wrapper:focus-within, .wrapper.has-value) label {
+  --label-padding: var(--fp-size-3xs);
+
+  top: 0;
+  left: calc(var(--padding-horizontal) - var(--label-padding));
+  transform: translateY(-50%);
+  font: var(--fp-font-caption);
+  color: var(--fp-color-content-secondary);
+  padding: 0 var(--label-padding);
+  background-color: var(--fp-color-primary-background);
+  pointer-events: initial;
+}
+
+:where(.has-icon:not(:focus-within), .has-icon:not(.has-value)) label {
+  right: calc(var(--padding-horizontal) + var(--icon-size) + var(--padding-vertical));
+}
+
+:host([label-fixed]) label {
+  position: static;
+  transition: none;
+  transform: none;
+  pointer-events: initial;
+  font: var(--fp-font-caption);
+  color: var(--fp-color-content-secondary);
+  padding: 0;
+}
+
+.error-icon,
+.invalid-text {
+  display: none;
+}
+
+.dirty.invalid label,
+.invalid-text,
+.error-icon {
+  color: var(--fp-color-danger);
+}
+
+.help-text {
+  color: var(--fp-color-content-secondary);
+}
+
+:host([help-text]) .hint,
+.dirty.invalid .hint {
+  display: block;
+}
+
+.dirty.invalid .invalid-text {
+  display: block;
+}
+
+.dirty.invalid .help-text {
+  display: none;
+}
+
+.dirty.invalid .error-icon {
+  display: inline-block;
+}
+
+.dirty.invalid .custom-icon~.error-icon {
+  display: none;
+}
