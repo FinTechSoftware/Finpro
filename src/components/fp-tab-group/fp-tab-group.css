@@ -1,16 +1,132 @@
 .tabs {
-    background-color: var(--fp-color-primary-background);
-    border-bottom: var(--fp-size-5xs) solid var(--fp-color-secondary-background);
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .tabs-list {
-    overflow-x: scroll;
-    border-radius: var(--fp-border-radius-l) var(--fp-border-radius-l) 0 0;
-  }
-  
-  .panels {
-    border-radius: 0 0 var(--fp-border-radius-l) var(--fp-border-radius-l);
-  }
-  
+  background-color: var(--fp-color-primary-background);
+  border-bottom: var(--fp-size-5xs) solid var(--fp-color-secondary-background);
+  display: flex;
+  flex-direction: row;
+}
+
+.tabs-list {
+  --overflow-x: 'auto';
+  --overflow-y: 'auto';
+  --border-radius: var(--fp-border-radius-l);
+
+  overflow-x: var(--overflow-x);
+  overflow-y: var(--overflow-y);
+  border-radius: var(--border-radius);
+}
+
+:host([overflowX='auto']) .tabs-list {
+  --overflow-x: 'auto'
+}
+
+:host([overflowX='clip']) .tabs-list {
+  --overflow-x: clip;
+}
+
+:host([overflowX='hidden']) .tabs-list {
+  --overflow-x: hidden;
+}
+
+:host([overflowX='inherit']) .tabs-list {
+  --overflow-x: inherit;
+}
+
+:host([overflowX='initial']) .tabs-list {
+  --overflow-x: initial;
+}
+
+:host([overflowX='overlay']) .tabs-list {
+  --overflow-x: overlay;
+}
+
+:host([overflowX='revert']) .tabs-list {
+  --overflow-x: revert;
+}
+
+:host([overflowX='scroll']) .tabs-list {
+  --overflow-x: scroll;
+}
+
+:host([overflowX='unset']) .tabs-list {
+  --overflow-x: unset;
+}
+
+:host([overflowX='visible']) .tabs-list {
+  --overflow-x: visible;
+}
+
+:host([overflowY='auto']) .tabs-list {
+  --overflow-y: auto;
+}
+
+:host([overflowY='clip']) .tabs-list {
+  --overflow-y: clip;
+}
+
+:host([overflowY='hidden']) .tabs-list {
+  --overflow-y: hidden;
+}
+
+:host([overflowY='inherit']) .tabs-list {
+  --overflow-y: inherit;
+}
+
+:host([overflowY='initial']) .tabs-list {
+  --overflow-y: initial;
+}
+
+:host([overflowY='overlay']) .tabs-list {
+  --overflow-y: overlay;
+}
+
+:host([overflowY='revert']) .tabs-list {
+  --overflow-y: revert;
+}
+
+:host([overflowY='scroll']) .tabs-list {
+  --overflow-y: scroll;
+}
+
+:host([overflowY='unset']) .tabs-list {
+  --overflow-y: unset;
+}
+
+:host([overflowY='visible']) .tabs-list {
+  --overflow-y: visible;
+}
+
+:host([borderRadius='n']) .tabs-list {
+  --border-radius: 0px;
+}
+
+:host([borderRadius='2xs']) .tabs-list {
+  --border-radius: var(--fp-border-radius-2xs) var(--fp-border-radius-2xs) 0 0;
+}
+
+:host([borderRadius='xs']) .tabs-list {
+  --border-radius: var(--fp-border-radius-xs) var(--fp-border-radius-xs) 0 0;
+}
+
+:host([borderRadius='s']) .tabs-list {
+  --border-radius: var(--fp-border-radius-s) var(--fp-border-radius-s) 0 0;
+}
+
+:host([borderRadius='m']) .tabs-list {
+  --border-radius: var(--fp-border-radius-m) var(--fp-border-radius-m) 0 0;
+}
+
+:host([borderRadius='l']) .tabs-list {
+  --border-radius: var(--fp-border-radius-l) var(--fp-border-radius-l) 0 0;
+}
+
+:host([borderRadius='xl']) .tabs-list {
+  --border-radius: var(--fp-border-radius-xl) var(--fp-border-radius-xl) 0 0;
+}
+
+:host([borderRadius='2xl']) .tabs-list {
+  --border-radius: var(--fp-border-radius-2xl) var(--fp-border-radius-2xl) 0 0;
+}
+
+.panels {
+  border-radius: 0 0 var(--fp-border-radius-l) var(--fp-border-radius-l);
+}

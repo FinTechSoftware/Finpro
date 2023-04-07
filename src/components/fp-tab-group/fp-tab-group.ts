@@ -1,10 +1,13 @@
 import { CSSResultGroup, html, LitElement, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import style from './fp-tab-group.css';
 import './fp-tab-panel/fp-tab-panel';
 import './fp-tab/fp-tab';
 import FpTabPanel from './fp-tab-panel/fp-tab-panel';
 import FpTab from './fp-tab/fp-tab';
+
+export type TabGroupOverflow = 'auto' | 'clip' | 'hidden' | 'inherit' | 'initial' | 'overlay' | 'revert' | 'scroll' | 'unset' | 'visible';
+export type TabGroupBorderRadius = 'n' | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl';
 
 /**
  * @tag fp-tab-group
@@ -15,6 +18,22 @@ export default class FpTabGroup extends LitElement {
   static get styles(): CSSResultGroup {
     return [style];
   }
+
+  /**
+   * Sets the tab group overflow-x
+  */
+  @property({ type: String, reflect: true })
+  overflowX: TabGroupOverflow = 'auto';
+  /**
+   * Sets the tab group overflow-y
+  */
+  @property({ type: String, reflect: true })
+  overflowY: TabGroupOverflow = 'auto';
+  /**
+   * Sets the tab group border radius
+  */
+  @property({ type: String, reflect: true })
+  borderRadius: TabGroupBorderRadius = 'l'
 
   private _connectedTabs: FpTab[] = [];
   private _connectedPanels: FpTabPanel[] = [];
@@ -35,7 +54,7 @@ export default class FpTabGroup extends LitElement {
     const isFirstAndNotDisabled =
       this._connectedTabs.filter(t => !t.disabled).length === 0 && !tab.disabled;
     this._connectedTabs.push(tab);
-    
+
     if ((!tab.disabled && tab.selected) || isFirstAndNotDisabled) {
       this.selectedTabName = tab.name;
     }
@@ -68,6 +87,7 @@ export default class FpTabGroup extends LitElement {
   unregisterTabPanel(panel: FpTabPanel) {
     this._connectedTabs.splice(this._connectedPanels.indexOf(panel), 1);
   }
+
 
   private _selectedTabName: string;
 
