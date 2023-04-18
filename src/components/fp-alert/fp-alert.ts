@@ -103,14 +103,27 @@ export default class FpAlert extends FinproElement {
   }
 
   private _initAlertActionSlot(event: Event) {
-    const slotElements = (event.target as HTMLSlotElement).assignedElements();
+    const slotElement = event.target as HTMLSlotElement;
+    const slotElements = slotElement.assignedElements();
+
     slotElements.forEach(element => {
       if (element.tagName !== 'FP-BUTTON') {
         element.parentNode?.removeChild(element);
         return;
       }
-      element.setAttribute('variant', 'tertiary' as ButtonVariant);
-      element.setAttribute('kind', 'neutral' as ButtonKind);
+
+      (slotElement.parentElement as HTMLElement).style.display = 'flex';
+
+      const variant = element.slot === 'action-pro' ? 'secondary' : 'primary';
+      const buttonTypes: Record<AlertVariant, string> = {
+        info: 'default',
+        warning: 'neutral',
+        success: 'success',
+        danger: 'danger',
+      };
+
+      element.setAttribute('variant', variant as ButtonVariant);
+      element.setAttribute('kind', buttonTypes[this.variant] as ButtonKind);
       element.setAttribute('size', 'medium' as ButtonSize);
       element.removeAttribute('icon');
     });
@@ -120,29 +133,43 @@ export default class FpAlert extends FinproElement {
     const caption =
       this.caption || this._hasAlertCaptionSlot
         ? html`<span class="caption">
-  <slot name="caption"> ${this.caption} </slot>
-</span>`
+            <slot name="caption"> ${this.caption} </slot>
+          </span>`
         : null;
     const icon = this._getIcon()
       ? html`<fp-icon class="icon" name=${ifDefined(this._getIcon())}></fp-icon>`
       : null;
 
     const closable = this.closable
-      ? html`<fp-button class="close" label="close" variant="tertiary" kind="neutral" icon="x" variant="secondary"
-  @click=${this._closeHandler}></fp-button>`
+      ? html`<fp-button
+          class="close"
+          label="close"
+          variant="tertiary"
+          kind="neutral"
+          icon="x"
+          variant="secondary"
+          @click=${this._closeHandler}
+        ></fp-button>`
       : null;
     const description = html`<span class="description">
-  <slot> ${this.description} </slot>
-</span>`;
+      <slot> ${this.description} </slot>
+    </span>`;
 
     return html`
       <div class="alert">
+        ${icon}
         <div class="wrapper">
           <div class="content">
-            ${icon}
             <div class="text-content">${caption} ${description}</div>
           </div>
-          <slot class="action" name="action" @slotchange=${this._initAlertActionSlot}></slot>
+          <div class="actions">
+            <slot class="action-fin" name="action-fin" @slotchange=${this._initAlertActionSlot}></slot>
+            <slot
+              class="action-pro"
+              name="action-pro"
+              @slotchange=${this._initAlertActionSlot}
+            ></slot>
+          </div>
         </div>
         ${closable}
       </div>

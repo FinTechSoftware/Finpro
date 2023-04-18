@@ -34,7 +34,8 @@ import { Meta, Canvas, ArgsTable, Story, Preview, Source } from '@storybook/addo
 />
 
 export const actionSlot = (actionLabel) => html`
-  <fp-button slot="action">${unsafeHTML(actionLabel)}</fp-button>
+  <fp-button slot="action-fin">${unsafeHTML(actionLabel)}</fp-button>
+  <fp-button slot="action-pro">${unsafeHTML(actionLabel)}</fp-button>
 `;
 
 export const SingleAlertTemplate = (args) => html`<fp-alert
